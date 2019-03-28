@@ -17,4 +17,12 @@ public class Producer {
     public int getId() {
         return id;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public long getCUI() {
+        return CUI;
+    }
 }

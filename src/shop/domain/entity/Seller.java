@@ -12,4 +12,12 @@ public class Seller extends Person {
             this.workProgram[i] = workProgram[i];
         }
     }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public int[] getWorkProgram() {
+        return workProgram;
+    }
 }

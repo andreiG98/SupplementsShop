@@ -10,4 +10,12 @@ public class Vitamin extends Product {
         this.type = type;
         this.form = form;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getForm() {
+        return form;
+    }
 }

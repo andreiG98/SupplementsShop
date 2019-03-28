@@ -10,4 +10,12 @@ public class Protein extends Product {
         this.concentration = concentration;
         this.type = type;
     }
+
+    public double getConcentration() {
+        return concentration;
+    }
+
+    public String getType() {
+        return type;
+    }
 }

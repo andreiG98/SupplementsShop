@@ -1,6 +1,6 @@
 package shop.domain.repository;
 
-import shop.domain.entity.Client;
+import shop.domain.entity.Customer;
 import shop.domain.entity.Courier;
 import shop.domain.entity.Invoice;
 import shop.domain.entity.Order;
@@ -19,14 +19,14 @@ public class OrderRepository {
         return null;
     }
 
-    public ArrayList<Order> getOrdersByClient (Client client) {
-        ArrayList<Order> ordersByClient = new ArrayList<Order>();
+    public ArrayList<Order> getOrdersByCustomer (Customer customer) {
+        ArrayList<Order> ordersByCustomer = new ArrayList<Order>();
         for (int i = 0; i < orders.length; i++) {
-            if (orders[i].getCommandClient().getId() == client.getId()) {
-                ordersByClient.add(orders[i]);
+            if (orders[i].getCommandCustomer().getId() == customer.getId()) {
+                ordersByCustomer.add(orders[i]);
             }
         }
-        return ordersByClient;
+        return ordersByCustomer;
     }
 
     public Order getOrderByInvoice (Invoice invoice) {

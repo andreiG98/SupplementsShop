@@ -2,14 +2,14 @@ package shop.domain.entity;
 
 public class Order {
     private int id;
-    private Client commandClient;
+    private Customer commandCustomer;
     private Invoice commandInvoice;
     private Courier commandCourier;
     private static int currentOrder;
 
-    public Order(Client commandClient, Invoice commandInvoice, Courier commandCourier) {
+    public Order(Customer commandCustomer, Invoice commandInvoice, Courier commandCourier) {
         this.id = ++currentOrder;
-        this.commandClient = new Client(commandClient);
+        this.commandCustomer = new Customer(commandCustomer);
         this.commandInvoice = new Invoice(commandInvoice);
         this.commandCourier = new Courier(commandCourier);
     }
@@ -22,8 +22,8 @@ public class Order {
         return commandInvoice;
     }
 
-    public Client getCommandClient() {
-        return commandClient;
+    public Customer getCommandCustomer() {
+        return commandCustomer;
     }
 
     public Courier getCommandCourier() {
