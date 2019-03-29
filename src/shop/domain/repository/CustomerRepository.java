@@ -5,15 +5,6 @@ import shop.domain.entity.Customer;
 public class CustomerRepository {
     private Customer[] customers;
 
-    public boolean existsCustomerById (int id) {
-        for (int i = 0; i < customers.length; i++) {
-            if (customers[i].getId() == id) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public Customer getCustomerById (int id) {
         for (int i = 0; i < customers.length; i++) {
             if (customers[i].getId() == id) {
