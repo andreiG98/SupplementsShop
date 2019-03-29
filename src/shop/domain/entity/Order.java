@@ -40,9 +40,6 @@ public class Order {
                         .withInvoiceProducts(commandInvoice.getInvoiceProducts())
                         .withPayMethod(commandInvoice.getPayMethod())
                         .build();
-//        this.commandCustomer = new Customer(commandCustomer);
-//        this.commandInvoice = new Invoice(commandInvoice);
-//        this.commandCourier = new Courier(commandCourier);
     }
 
     public int getId() {

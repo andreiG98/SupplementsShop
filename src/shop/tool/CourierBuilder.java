@@ -5,8 +5,10 @@ import shop.domain.entity.Courier;
 public class CourierBuilder {
     private final Courier target = new Courier();
 
-    public CourierBuilder withId (int id) {
-        target.setId(id);
+    public CourierBuilder withId () {
+        int currentCourier = Courier.getCurrentCourier();
+        Courier.increaseCurrentCourier();
+        target.setId(currentCourier);
         return this;
     }
 
