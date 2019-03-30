@@ -6,8 +6,8 @@ public class CourierBuilder {
     private final Courier target = new Courier();
 
     public CourierBuilder withId () {
-        int currentCourier = Courier.getCurrentCourier();
         Courier.increaseCurrentCourier();
+        int currentCourier = Courier.getCurrentCourier();
         target.setId(currentCourier);
         return this;
     }
@@ -17,7 +17,7 @@ public class CourierBuilder {
         return this;
     }
 
-    public CourierBuilder withCNP (long CNP) {
+    public CourierBuilder withCNP (String CNP) {
         target.setCNP(CNP);
         return this;
     }

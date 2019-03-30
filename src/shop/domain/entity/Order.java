@@ -15,7 +15,7 @@ public class Order {
         this.id = ++currentOrder;
         this.commandCustomer =
                 new CustomerBuilder()
-                        .withId(commandCustomer.getId())
+                        .withId()
                         .withName(commandCustomer.getName())
                         .withCNP(commandCustomer.getCNP())
                         .withPhoneNumber(commandCustomer.getPhoneNumber())
@@ -25,7 +25,7 @@ public class Order {
                         .build();
         this.commandCourier =
                 new CourierBuilder()
-                        .withId(commandCourier.getId())
+                        .withId()
                         .withName(commandCourier.getName())
                         .withCNP(commandCourier.getCNP())
                         .withPhoneNumber(commandCourier.getPhoneNumber())
@@ -34,7 +34,7 @@ public class Order {
                         .build();
         this.commandInvoice =
                 new InvoiceBuilder()
-                        .withId(commandInvoice.getId())
+                        .withId()
                         .withValue(commandInvoice.getValue())
                         .withCustomer(commandInvoice.getInvoiceCustomer())
                         .withInvoiceProducts(commandInvoice.getInvoiceProducts())

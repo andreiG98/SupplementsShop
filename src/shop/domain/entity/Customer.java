@@ -4,7 +4,7 @@ public class Customer extends Person{
     private String email;
     private String password;
     private String address;
-    private static int currentClient = 0;
+    private static int currentCustomer = 0;
 
     protected String getPassword() {
         return password;
@@ -14,8 +14,12 @@ public class Customer extends Person{
         return address;
     }
 
-    public static int getCurrentClient() {
-        return currentClient;
+    public static int getCurrentCustomer() {
+        return currentCustomer;
+    }
+
+    public static void increaseCurrentCustomer() {
+        Customer.currentCustomer++;
     }
 
     public String getEmail() {

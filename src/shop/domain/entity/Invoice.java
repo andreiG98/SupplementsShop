@@ -37,7 +37,7 @@ public class Invoice {
     public void setInvoiceCustomer(Customer invoiceCustomer) {
         this.invoiceCustomer =
                 new CustomerBuilder()
-                        .withId(invoiceCustomer.getId())
+                        .withId()
                         .withName(invoiceCustomer.getName())
                         .withCNP(invoiceCustomer.getCNP())
                         .withPhoneNumber(invoiceCustomer.getPhoneNumber())
@@ -59,5 +59,13 @@ public class Invoice {
 
     public Customer getInvoiceCustomer() {
         return invoiceCustomer;
+    }
+
+    public static int getCurrentInvoice() {
+        return currentInvoice;
+    }
+
+    public static void increaseCurrentInvoice() {
+        Invoice.currentInvoice++;
     }
 }

@@ -1,8 +1,6 @@
 package shop;
 
-import shop.domain.entity.Customer;
-import shop.domain.entity.Producer;
-import shop.domain.entity.Product;
+import shop.domain.repository.CustomerRepository;
 
 public class Main {
 
@@ -19,5 +17,8 @@ public class Main {
 //        Customer customer2 = new Customer("Andrei", 121213, "019928", "andrei", "asdadasd", "ajdsjsdjd");
 //        System.out.println(customer1.getId());
 //        System.out.println(customer2.getId());
+
+        CustomerRepository testCustomer = new CustomerRepository();
+        testCustomer.listAllCustomers();
     }
 }

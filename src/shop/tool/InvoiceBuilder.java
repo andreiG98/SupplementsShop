@@ -7,8 +7,10 @@ import shop.domain.entity.Product;
 public class InvoiceBuilder {
     private final Invoice target = new Invoice();
 
-    public InvoiceBuilder withId (int id) {
-        target.setId(id);
+    public InvoiceBuilder withId () {
+        Invoice.increaseCurrentInvoice();
+        int currentInvoice = Invoice.getCurrentInvoice();
+        target.setId(currentInvoice);
         return this;
     }
 

@@ -3,14 +3,14 @@ package shop.domain.entity;
 abstract class Person {
     private int id;
     private String name;
-    private long CNP;
+    private String CNP;
     private String phoneNumber;
 
     public int getId() {
         return id;
     }
 
-    public long getCNP() {
+    public String getCNP() {
         return CNP;
     }
 
@@ -30,7 +30,7 @@ abstract class Person {
         this.name = name;
     }
 
-    public void setCNP(long CNP) {
+    public void setCNP(String CNP) {
         this.CNP = CNP;
     }
 

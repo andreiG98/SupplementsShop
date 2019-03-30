@@ -5,8 +5,10 @@ import shop.domain.entity.Customer;
 public class CustomerBuilder {
     private final Customer target = new Customer();
 
-    public CustomerBuilder withId (int id) {
-        target.setId(id);
+    public CustomerBuilder withId () {
+        Customer.increaseCurrentCustomer();
+        int currentCustomer = Customer.getCurrentCustomer();
+        target.setId(currentCustomer);
         return this;
     }
 
@@ -15,7 +17,7 @@ public class CustomerBuilder {
         return this;
     }
 
-    public CustomerBuilder withCNP (long CNP) {
+    public CustomerBuilder withCNP (String CNP) {
         target.setCNP(CNP);
         return this;
     }
