@@ -35,7 +35,7 @@ public class CustomerRepository {
         return null;
     }
 
-    public Customer getCustomerByCNP (long CNP) {
+    public Customer getCustomerByCNP (String CNP) {
         for (int i = 0; i < customers.length; i++) {
             if (customers[i].getCNP().equals(CNP)) {
                 return customers[i];
@@ -46,7 +46,7 @@ public class CustomerRepository {
 
     public Customer getCustomerByEmail (String email) {
         for (int i = 0; i < customers.length; i++) {
-            if (customers[i].getEmail() == email) {
+            if (customers[i].getEmail().equals(email)) {
                 return customers[i];
             }
         }
@@ -58,4 +58,10 @@ public class CustomerRepository {
             System.out.println(customers[i].getId() + " " + customers[i].getName() + " " + customers[i].getCNP() + " " + customers[i].getPhoneNumber() + " " + customers[i].getEmail() + " " + customers[i].getAddress());
         }
     }
+
+    public Customer[] getCustomers() {
+        return customers;
+    }
+
+
 }

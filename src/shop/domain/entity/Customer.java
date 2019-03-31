@@ -1,5 +1,7 @@
 package shop.domain.entity;
 
+import java.util.ArrayList;
+
 public class Customer extends Person{
     private String email;
     private String password;
@@ -36,5 +38,11 @@ public class Customer extends Person{
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public static void show (ArrayList<Customer> customers) {
+        for (int i = 0; i < customers.size(); i++) {
+            System.out.println(customers.get(i).getId() + " " + customers.get(i).getName() + " " + customers.get(i).getCNP() + " " + customers.get(i).getPhoneNumber()+ " " + customers.get(i).getEmail() + " " + customers.get(i).getAddress());
+        }
     }
 }

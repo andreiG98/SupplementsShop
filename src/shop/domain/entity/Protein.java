@@ -5,11 +5,14 @@ public class Protein extends Product {
     private String type;
     private static int currentProtein = 0;
 
-    public Protein(double price, String name, double discount, double weight, String flavour, double concentration, String type) {
-        super(++currentProtein, price, name, discount, weight, flavour);
-        this.concentration = concentration;
-        this.type = type;
+    public static int getCurrentProtein() {
+        return currentProtein;
     }
+
+    public static void increaseCurrentProtein() {
+        Protein.currentProtein++;
+    }
+
 
     public double getConcentration() {
         return concentration;
@@ -17,5 +20,13 @@ public class Protein extends Product {
 
     public String getType() {
         return type;
+    }
+
+    public void setConcentration(double concentration) {
+        this.concentration = concentration;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

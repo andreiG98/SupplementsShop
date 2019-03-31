@@ -8,12 +8,51 @@ public abstract class Product {
     private double weight;
     private String flavour;
 
-    public Product(int id, double price, String name, double discount, double weight, String flavour) {
+    public int getId() {
+        return id;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getDiscount() {
+        return discount;
+    }
+
+    public double getWeight() {
+        return weight;
+    }
+
+    public String getFlavour() {
+        return flavour;
+    }
+
+    public void setId(int id) {
         this.id = id;
+    }
+
+    public void setPrice(double price) {
         this.price = price;
+    }
+
+    public void setName(String name) {
         this.name = name;
+    }
+
+    public void setDiscount(double discount) {
         this.discount = discount;
+    }
+
+    public void setWeight(double weight) {
         this.weight = weight;
+    }
+
+    public void setFlavour(String flavour) {
         this.flavour = flavour;
     }
 }
