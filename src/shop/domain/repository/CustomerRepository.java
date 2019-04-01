@@ -5,7 +5,7 @@ import shop.tool.CustomerBuilder;
 import shop.tool.TestData;
 
 public class CustomerRepository {
-    private Customer[] customers;
+    static private Customer[] customers;
 
     public CustomerRepository () {
         int length = TestData.getInstance().getCustomerData().length;
@@ -23,6 +23,15 @@ public class CustomerRepository {
                             .withAddress(splitedData[5])
                             .build();
         }
+    }
+
+    public static void addCustomer (Customer newCustomer) {
+        Customer[] auxCustomer = new Customer[customers.length + 1];
+        for (int i = 0; i < customers.length; i++) {
+            auxCustomer[i] = customers[i];
+        }
+        auxCustomer[customers.length] = newCustomer;
+        customers = auxCustomer;
     }
 
     public Customer getCustomerById (int id) {

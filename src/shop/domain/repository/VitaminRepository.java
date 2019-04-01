@@ -48,6 +48,7 @@ public class VitaminRepository {
     }
 
     public void listAllvitamins () {
+        System.out.println("All available vitamins:");
         for (int i = 0; i < vitamins.length; i++) {
             System.out.println(vitamins[i].getId() + " " + vitamins[i].getName() + " " + vitamins[i].getPrice() + " lei " + vitamins[i].getDiscount() + " discount " + vitamins[i].getWeight() + " kg " + vitamins[i].getFlavour() + " flavour " + vitamins[i].getForm() + "-form " + vitamins[i].getType());
         }

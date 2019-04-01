@@ -8,8 +8,14 @@ public class Customer extends Person{
     private String address;
     private static int currentCustomer = 0;
 
-    public String getPassword() {
+    protected String getPassword() {
         return password;
+    }
+
+    public boolean checkPassword (String password) {
+        if (this.password.equals(password))
+            return true;
+        return false;
     }
 
     public String getAddress() {
