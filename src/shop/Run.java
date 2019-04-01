@@ -66,6 +66,7 @@ public class Run {
                     producersService.searchProducersByASpecificPattern();
                     break;
                 case 7:
+                    orderService.showOrders();
                     //orderService.listMyOrders(customerService.getCustomerRepository().getCustomerById(customerId));
                     break;
                 case 8:

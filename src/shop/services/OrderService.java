@@ -16,7 +16,7 @@ public class OrderService {
     private InvoiceRepository invoiceRepository = RepositoryConfiguration.getInstance().getInvoiceRepository();
     private CourierRepository courierRepository = RepositoryConfiguration.getInstance().getCourierRepository();
     private ArrayList<Product> orderProducts = new ArrayList<Product>();
-    private double totalCartValue = 0;
+    private double totalCartValue;
 
     public void showProtein() {
         proteinRepository.listAllProteins();
@@ -26,10 +26,15 @@ public class OrderService {
         vitaminRepository.listAllvitamins();
     }
 
+    public void showOrders() {
+        orderRepository.listAllOrders();
+    }
+
     public void addOrder (Customer customer) {
         Scanner scanner = new Scanner(System.in);
         int choice;
-        if (customer.getId() != -1) {
+        totalCartValue = 0;
+        if (customer != null) {
             while (true) {
                 System.out.println("What do you want to buy?");
                 System.out.println("1 - Protein");
@@ -144,6 +149,7 @@ public class OrderService {
                         .withPayMethod(payMethod)
                         .withInvoiceProducts(invoiceProducts)
                         .build();
+        totalCartValue = 0;
         invoiceRepository.addInvoice(invoice);
         Courier courier = courierRepository.getCouriersByWorkZone("Sector 6").get(0);
         Order order = new Order(customer, invoice, courier);

@@ -16,9 +16,11 @@ public class OrderRepository {
 
     public void listAllOrders() {
         System.out.println(orders.length);
+        ArrayList<Order> allOrders = new ArrayList<Order>();
         for (int i = 0; i < orders.length; i++) {
-            System.out.println(orders[i].getId());
+            allOrders.add(orders[i]);
         }
+        Order.show(allOrders);
     }
 
     public void addOrder (Order order) {
