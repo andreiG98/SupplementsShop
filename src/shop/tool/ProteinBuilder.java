@@ -48,6 +48,11 @@ public class ProteinBuilder {
         return this;
     }
 
+    public ProteinBuilder withProducer (String producer) {
+        target.setProducer(producer);
+        return this;
+    }
+
     public Protein build() {
         return target;
     }

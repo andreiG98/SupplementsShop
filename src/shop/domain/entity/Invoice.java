@@ -48,6 +48,7 @@ public class Invoice {
     }
 
     public void setInvoiceProducts(Product[] invoiceProducts) {
+        this.invoiceProducts = new Product[invoiceProducts.length];
         for (int i = 0; i < invoiceProducts.length; i++) {
             this.invoiceProducts[i] = invoiceProducts[i];
         }

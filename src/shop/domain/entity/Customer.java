@@ -47,6 +47,10 @@ public class Customer extends Person{
     }
 
     public static void show (ArrayList<Customer> customers) {
+        if (customers.size() == 0) {
+            System.out.println("Nothing found!");
+            return;
+        }
         for (int i = 0; i < customers.size(); i++) {
             System.out.println(customers.get(i).getId() + " " + customers.get(i).getName() + " " + customers.get(i).getCNP() + " " + customers.get(i).getPhoneNumber()+ " " + customers.get(i).getEmail() + " " + customers.get(i).getAddress());
         }

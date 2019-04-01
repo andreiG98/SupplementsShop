@@ -24,6 +24,7 @@ public class VitaminRepository {
                             .withFlavour(splitedData[4])
                             .withForm(splitedData[5])
                             .withType(splitedData[6])
+                            .withProducer(splitedData[7])
                             .build();
 
         }
@@ -38,7 +39,7 @@ public class VitaminRepository {
         return vitaminsByForm;
     }
 
-    public ArrayList<Vitamin> getVitaminsBy (String type) {
+    public ArrayList<Vitamin> getVitaminsByType (String type) {
         ArrayList<Vitamin> vitaminsByType = new ArrayList<Vitamin>();
         for (int i = 0; i < vitamins.length; i++) {
             if (vitamins[i].getType().equals(type))
@@ -47,10 +48,18 @@ public class VitaminRepository {
         return vitaminsByType;
     }
 
+    public Vitamin getVitaminById (int id) {
+        for (int i = 0; i < vitamins.length; i++) {
+            if (vitamins[i].getId() == id)
+                return vitamins[i];
+        }
+        return null;
+    }
+
     public void listAllvitamins () {
         System.out.println("All available vitamins:");
         for (int i = 0; i < vitamins.length; i++) {
-            System.out.println(vitamins[i].getId() + " " + vitamins[i].getName() + " " + vitamins[i].getPrice() + " lei " + vitamins[i].getDiscount() + " discount " + vitamins[i].getWeight() + " kg " + vitamins[i].getFlavour() + " flavour " + vitamins[i].getForm() + "-form " + vitamins[i].getType());
+            System.out.println(vitamins[i].getId() + " " + vitamins[i].getProducer() + " " + vitamins[i].getName() + " " + vitamins[i].getPrice() + " lei " + vitamins[i].getDiscount() + " discount " + vitamins[i].getWeight() + " kg " + vitamins[i].getFlavour() + " flavour " + vitamins[i].getForm() + "-form " + vitamins[i].getType());
         }
     }
 }

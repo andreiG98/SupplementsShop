@@ -1,5 +1,7 @@
 package shop.domain.entity;
 
+import java.util.ArrayList;
+
 public class Producer {
     private int id;
     private String name;
@@ -36,5 +38,15 @@ public class Producer {
 
     public static void increaseCurrentProducer() {
         Producer.currentProducer++;
+    }
+
+    public static void show (ArrayList<Producer> producers) {
+        if (producers.size() == 0) {
+            System.out.println("Nothing found!");
+            return;
+        }
+        for (int i = 0; i< producers.size(); i++) {
+            System.out.println(producers.get(i).getId() + " " + producers.get(i).getName() + " " + producers.get(i).getCUI());
+        }
     }
 }

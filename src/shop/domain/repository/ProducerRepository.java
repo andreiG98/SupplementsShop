@@ -1,9 +1,25 @@
 package shop.domain.repository;
 
 import shop.domain.entity.Producer;
+import shop.tool.ProducerBuilder;
+import shop.tool.TestData;
 
 public class ProducerRepository {
     private Producer[] producers;
+
+    public ProducerRepository () {
+        int length = TestData.getInstance().getProducersData().length;
+        this.producers = new Producer[length];
+        for (int i = 0; i < length; i++) {
+            String [] splitedData = TestData.getInstance().getProducersData()[i].split(";");
+            this.producers[i] =
+                    new ProducerBuilder()
+                            .withId()
+                            .withName(splitedData[0])
+                            .withCUI(Long.parseLong(splitedData[1]))
+                            .build();
+        }
+    }
 
     public Producer getProducerById (int id) {
         for (int i = 0; i < producers.length; i++) {
@@ -30,5 +46,15 @@ public class ProducerRepository {
             }
         }
         return null;
+    }
+
+    public void listtAllProducers () {
+        for (int i = 0; i < producers.length; i++) {
+            System.out.println(producers[i].getId() + " " + producers[i].getName() + " " + producers[i].getCUI());
+        }
+    }
+
+    public Producer[] getProducers() {
+        return producers;
     }
 }

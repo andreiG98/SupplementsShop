@@ -24,6 +24,7 @@ public class ProteinRepository {
                             .withFlavour(splitedData[4])
                             .withConcentration(Double.parseDouble(splitedData[5]))
                             .withType(splitedData[6])
+                            .withProducer(splitedData[7])
                             .build();
 
         }
@@ -47,7 +48,7 @@ public class ProteinRepository {
         return proteinsByConcentration;
     }
 
-    public ArrayList<Protein> getProteinByConcentration (String type) {
+    public ArrayList<Protein> getProteinByType (String type) {
         ArrayList<Protein> proteinsByType = new ArrayList<Protein>();
         for (int i = 0; i < proteins.length; i++) {
             if (proteins[i].getType().equals(type))
@@ -59,7 +60,7 @@ public class ProteinRepository {
     public void listAllProteins () {
         System.out.println("All available proteins:");
         for (int i = 0; i < proteins.length; i++) {
-            System.out.println(proteins[i].getId() + " " + proteins[i].getName() + " " + proteins[i].getPrice() + " lei " + proteins[i].getDiscount() + " discount " + proteins[i].getWeight() + " kg " + proteins[i].getFlavour() + " flavour " + proteins[i].getConcentration() + " concentration " + proteins[i].getType());
+            System.out.println(proteins[i].getId() + " " + proteins[i].getProducer() + " " + proteins[i].getName() + " " + proteins[i].getPrice() + " lei " + proteins[i].getDiscount() + " discount " + proteins[i].getWeight() + " kg " + proteins[i].getFlavour() + " flavour " + proteins[i].getConcentration() + " concentration " + proteins[i].getType());
         }
     }
 }

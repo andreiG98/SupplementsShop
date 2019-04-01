@@ -48,6 +48,11 @@ public class VitaminBuilder {
         return this;
     }
 
+    public VitaminBuilder withProducer (String producer) {
+        target.setProducer(producer);
+        return this;
+    }
+
     public Vitamin build() {
         return target;
     }
