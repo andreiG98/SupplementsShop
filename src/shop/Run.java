@@ -1,6 +1,6 @@
 package shop;
 
-import shop.domain.repository.ProteinRepository;
+import shop.services.OrderService;
 
 public class Run {
 
@@ -13,8 +13,14 @@ public class Run {
 //
 //        }
 
-        ProteinRepository proteinRepository = new ProteinRepository();
-        proteinRepository.listAllProteins();
+//        ProteinRepository proteinRepository = new ProteinRepository();
+//        proteinRepository.listAllProteins();
+//
+//        VitaminRepository vitaminRepository = new VitaminRepository();
+//        vitaminRepository.listAllvitamins();
+
+        OrderService orderService = new OrderService();
+        orderService.addOrder();
 
     }
 }

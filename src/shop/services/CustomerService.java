@@ -45,4 +45,16 @@ public class CustomerService {
         return resultPattern.toString();
     }
 
+    public CustomerRepository getCustomerRepository() {
+        return customerRepository;
+    }
+
+    public boolean checkEmailPassword(String email, String password) {
+        Customer customerByEmail = customerRepository.getCustomerByEmail(email);
+        if (customerByEmail == null)
+            return false;
+        if (customerByEmail.getPassword().equals(password))
+            return true;
+        return false;
+    }
 }

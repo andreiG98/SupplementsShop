@@ -37,6 +37,11 @@ public class TestData {
             "Soy Protein;100;0.4;0.8;vanilla;0.6;vegetarian, vegan"
     };
 
+    private String[] vitaminData = new String[] {
+            "Multivitamin;40;0.2;0.3;none;powder;men",
+            "Vitamin C;20;0;0.1;orange;effervescent;universal"
+    };
+
     public static TestData getInstance() {
         return ourInstance;
     }
@@ -51,6 +56,10 @@ public class TestData {
 
     public String[] getProteinData() {
         return proteinData;
+    }
+
+    public String[] getVitaminData() {
+        return vitaminData;
     }
 
     private TestData() {

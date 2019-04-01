@@ -8,7 +8,7 @@ public class Customer extends Person{
     private String address;
     private static int currentCustomer = 0;
 
-    protected String getPassword() {
+    public String getPassword() {
         return password;
     }
 

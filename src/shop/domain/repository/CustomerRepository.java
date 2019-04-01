@@ -22,7 +22,6 @@ public class CustomerRepository {
                             .withPassword(splitedData[4])
                             .withAddress(splitedData[5])
                             .build();
-
         }
     }
 

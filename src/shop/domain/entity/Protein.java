@@ -13,7 +13,6 @@ public class Protein extends Product {
         Protein.currentProtein++;
     }
 
-
     public double getConcentration() {
         return concentration;
     }

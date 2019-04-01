@@ -4,15 +4,7 @@ public class Producer {
     private int id;
     private String name;
     private long CUI;
-    private Product[] producedProducts;
     private static int currentProducer = 0;
-
-    public Producer(String name, long CUI, Product[] producedProducts) {
-        this.id = ++currentProducer;
-        this.name = name;
-        this.CUI = CUI;
-        this.producedProducts = producedProducts;
-    }
 
     public int getId() {
         return id;
@@ -24,5 +16,25 @@ public class Producer {
 
     public long getCUI() {
         return CUI;
+    }
+
+    public static int getCurrentProducer() {
+        return currentProducer;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setCUI(long CUI) {
+        this.CUI = CUI;
+    }
+
+    public static void increaseCurrentProducer() {
+        Producer.currentProducer++;
     }
 }

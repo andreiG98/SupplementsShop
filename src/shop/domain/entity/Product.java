@@ -1,5 +1,7 @@
 package shop.domain.entity;
 
+import shop.tool.ProducerBuilder;
+
 public abstract class Product {
     private int id;
     private double price;
@@ -7,6 +9,7 @@ public abstract class Product {
     private double discount;
     private double weight;
     private String flavour;
+    private Producer producer;
 
     public int getId() {
         return id;
@@ -54,5 +57,18 @@ public abstract class Product {
 
     public void setFlavour(String flavour) {
         this.flavour = flavour;
+    }
+
+    public Producer getProducer() {
+        return producer;
+    }
+
+    public void setProducer(Producer producer) {
+        this.producer =
+                new ProducerBuilder()
+                        .withId()
+                        .withName(producer.getName())
+                        .withCUI(producer.getCUI())
+                        .build();
     }
 }
