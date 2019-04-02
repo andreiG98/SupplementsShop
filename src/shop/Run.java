@@ -1,5 +1,6 @@
 package shop;
 
+import shop.domain.entity.Customer;
 import shop.services.CustomerService;
 import shop.services.OrderService;
 import shop.services.ProducersService;
@@ -20,6 +21,7 @@ public class Run {
 //        customerService.getCustomerRepository().listAllCustomers();
         int choice;
         int customerId = -1;
+        Customer loggedCustomer = null;
         while(true) {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Choose one option:");
@@ -32,7 +34,7 @@ public class Run {
             System.out.println("6 - Search producer by a name/partial name");
             System.out.println("7 - List your orders (if you are logged in)");
             System.out.println("8 - List your invoices (if you are logged in)");
-            System.out.println("9 - Search order by invoice id (if you are logged in)");
+            System.out.println("9 - Search order by order id (if you are logged in)");
             System.out.println("10 - List proteins after a certain concentration");
             System.out.println("11 - Exit");
 
@@ -45,13 +47,14 @@ public class Run {
             }
             switch (choice) {
                 case 0:
-                    customerId = customerService.logIn(customerId);
+                    loggedCustomer = customerService.logIn(loggedCustomer);
+                    //customerId = customerService.logIn(customerId);
                     break;
                 case 1:
-                    customerService.addCustomer(customerId);
+                    customerService.addCustomer(loggedCustomer.getId());
                     break;
                 case 2:
-                    orderService.addOrder(customerService.getCustomerRepository().getCustomerById(customerId));
+                    orderService.addOrder(loggedCustomer);
                     break;
                 case 3:
                     orderService.showProtein();
@@ -66,14 +69,13 @@ public class Run {
                     producersService.searchProducersByASpecificPattern();
                     break;
                 case 7:
-                    orderService.showOrders();
-                    //orderService.listMyOrders(customerService.getCustomerRepository().getCustomerById(customerId));
+                    orderService.listMyOrders(loggedCustomer);
                     break;
                 case 8:
-                    //orderService.listMyInvoices(customerService.getCustomerRepository().getCustomerById(customerId));
+                    orderService.listMyInvoices(loggedCustomer);
                     break;
                 case 9:
-                    orderService.listOrderById();
+                    orderService.listOrderById(loggedCustomer);
                     break;
                 case 10:
                     orderService.listProteinsByConcentration();

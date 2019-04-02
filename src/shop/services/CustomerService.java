@@ -47,10 +47,6 @@ public class CustomerService {
         return resultPattern.toString();
     }
 
-    public CustomerRepository getCustomerRepository() {
-        return customerRepository;
-    }
-
     protected Customer getCustomerById (int id) {
         return customerRepository.getCustomerById(id);
     }
@@ -72,14 +68,14 @@ public class CustomerService {
         }
     }
 
-    public int logIn (int customerId) {
+    public Customer logIn (Customer loggedCustomer) {
         Scanner scanner = new Scanner(System.in);
         boolean tryAgain = true;
         //boolean loggedIn = false;
         String password;
         String email;
         CustomerService customerService = new CustomerService();
-        if (customerId == -1) {
+        if (loggedCustomer == null) {
             do {
                 System.out.println("Please type your email: ");
                 email = scanner.nextLine();
@@ -107,7 +103,7 @@ public class CustomerService {
                         }
                     } while (!choiceTryAgain.equals("y") && !choiceTryAgain.equals("Y") && !choiceTryAgain.equals("n") && !choiceTryAgain.equals("N"));
                 } else {
-                    customerId = customerRepository.getCustomerByEmail(email).getId();
+                    loggedCustomer = customerRepository.getCustomerByEmail(email);
                     System.out.println("You are logged in!");
                     tryAgain = false;
                 }
@@ -115,6 +111,6 @@ public class CustomerService {
         } else {
             System.out.println("You are already logged in!");
         }
-        return customerId;
+        return loggedCustomer;
     }
 }

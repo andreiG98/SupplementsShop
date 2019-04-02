@@ -33,7 +33,7 @@ public class InvoiceRepository {
     public ArrayList<Invoice> getInvoicesByClient (Customer customer) {
         ArrayList<Invoice> invoicesByClient = new ArrayList<Invoice>();
         for (int i = 0; i < invoices.length; i++) {
-            if (invoices[i].getInvoiceCustomer().getId() == customer.getId()) {
+            if (invoices[i].getInvoiceCustomer().getEmail().equals(customer.getEmail())) {
                 invoicesByClient.add(invoices[i]);
             }
         }

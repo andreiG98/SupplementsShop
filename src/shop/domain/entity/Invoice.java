@@ -2,6 +2,8 @@ package shop.domain.entity;
 
 import shop.tool.CustomerBuilder;
 
+import java.util.ArrayList;
+
 public class Invoice {
     private int id;
     private double value;
@@ -68,5 +70,23 @@ public class Invoice {
 
     public static void increaseCurrentInvoice() {
         Invoice.currentInvoice++;
+    }
+
+    public static void show (ArrayList<Invoice> invoices) {
+        if (invoices.size() == 0) {
+            System.out.println("Nothing found!");
+            return;
+        }
+        for (int i = 0; i < invoices.size(); i++) {
+            Invoice invoice = invoices.get(i);
+            System.out.println("Invoice id: " + invoice.getId());
+            System.out.println("Customer name: " + invoice.getInvoiceCustomer().getName());
+            for (int j = 0; j < invoice.getInvoiceProducts().length; j++) {
+                System.out.println("Product id: " + invoice.getInvoiceProducts()[i].getId() + "\nProducer: " + invoice.getInvoiceProducts()[i].getProducer() + "\nProduct name: " + invoice.getInvoiceProducts()[i].getName() + "\nProduct flavour: " + invoice.getInvoiceProducts()[i].getFlavour() + "\nWeight: " + invoice.getInvoiceProducts()[i].getWeight() + " kg\nPrice: " + invoice.getInvoiceProducts()[i].getPrice() + " lei");
+            }
+            System.out.println("Pay method: " + invoice.getPayMethod());
+            System.out.println("Total value: " + invoice.getValue() + " lei");
+            System.out.println("***************************");
+        }
     }
 }

@@ -154,12 +154,27 @@ public class OrderService {
         Courier courier = courierRepository.getCouriersByWorkZone("Sector 6").get(0);
         Order order = new Order(customer, invoice, courier);
         orderRepository.addOrder(order);
-        listMyOrders(customer);
+        System.out.println("Thank you for order!");
     }
 
     public void listMyOrders (Customer customer) {
-        ArrayList<Order> ordersByCustomer = orderRepository.getOrdersByCustomer(customer);
-        Order.show(ordersByCustomer);
+        if (customer == null) {
+            System.out.println("You need to be logged in!");
+            return;
+        } else {
+            ArrayList<Order> ordersByCustomer = orderRepository.getOrdersByCustomer(customer);
+            Order.show(ordersByCustomer);
+        }
+    }
+
+    public void listMyInvoices (Customer customer) {
+        if (customer == null) {
+            System.out.println("You need to be logged in!");
+            return;
+        } else {
+            ArrayList<Invoice> invoicesByCustomer = invoiceRepository.getInvoicesByClient(customer);
+            Invoice.show(invoicesByCustomer);
+        }
     }
 
     private void listCart () {
@@ -169,20 +184,25 @@ public class OrderService {
         System.out.println("Total: " + totalCartValue + " lei");
     }
 
-    public void listOrderById () {
-        Scanner scanner = new Scanner(System.in);
-        int orderId;
-        System.out.println("Type order id:");
-        orderId = scanner.nextInt();
-        scanner.nextLine();
-        Order order = orderRepository.getOrderById(orderId);
-        if (order == null) {
-            System.out.println("Order doesn't exist!");
+    public void listOrderById (Customer customer) {
+        if (customer == null) {
+            System.out.println("You need to be logged in!");
             return;
+        } else {
+            Scanner scanner = new Scanner(System.in);
+            int orderId;
+            System.out.println("Type order id:");
+            orderId = scanner.nextInt();
+            scanner.nextLine();
+            Order order = orderRepository.getOrderById(orderId);
+            if (order == null) {
+                System.out.println("Order doesn't exist!");
+                return;
+            }
+            ArrayList<Order> ordersById = new ArrayList<Order>();
+            ordersById.add(order);
+            Order.show(ordersById);
         }
-        ArrayList<Order> ordersById = new ArrayList<Order>();
-        ordersById.add(order);
-        Order.show(ordersById);
     }
 
     public void listProteinsByConcentration () {

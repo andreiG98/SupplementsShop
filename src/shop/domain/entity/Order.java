@@ -17,7 +17,6 @@ public class Order {
         this.id = ++currentOrder;
         this.commandCustomer =
                 new CustomerBuilder()
-                        .withId()
                         .withName(commandCustomer.getName())
                         .withCNP(commandCustomer.getCNP())
                         .withPhoneNumber(commandCustomer.getPhoneNumber())
@@ -25,23 +24,24 @@ public class Order {
                         .withPassword(commandCustomer.getPassword())
                         .withAddress(commandCustomer.getAddress())
                         .build();
+        this.commandCustomer.setId(commandCustomer.getId());
         this.commandCourier =
                 new CourierBuilder()
-                        .withId()
                         .withName(commandCourier.getName())
                         .withCNP(commandCourier.getCNP())
                         .withPhoneNumber(commandCourier.getPhoneNumber())
                         .withWorkZone(commandCourier.getWorkZone())
                         .withDrivingLicenseNo(commandCourier.getDrivingLicenseNo())
                         .build();
+        this.commandCourier.setId(commandCourier.getId());
         this.commandInvoice =
                 new InvoiceBuilder()
-                        .withId()
                         .withValue(commandInvoice.getValue())
                         .withCustomer(commandInvoice.getInvoiceCustomer())
                         .withInvoiceProducts(commandInvoice.getInvoiceProducts())
                         .withPayMethod(commandInvoice.getPayMethod())
                         .build();
+        this.commandInvoice.setId(commandInvoice.getId());
     }
 
     public int getId() {
@@ -70,10 +70,11 @@ public class Order {
             Invoice invoice = orders.get(i).getCommandInvoice();
             System.out.println("Invoice id: " + invoice.getId() + "\nCustomer name: " + invoice.getInvoiceCustomer().getName());
             for (int j = 0; j < invoice.getInvoiceProducts().length; j++) {
-                System.out.println("Product id: " + invoice.getInvoiceProducts()[i].getId() + "\nProducer: " + invoice.getInvoiceProducts()[i].getProducer() + "\nProduct name: " + invoice.getInvoiceProducts()[i].getName() + "\nProduct flavour: " + invoice.getInvoiceProducts()[i].getFlavour() + "Weight: " + invoice.getInvoiceProducts()[i].getWeight() + " kg\nPrice: " + invoice.getInvoiceProducts()[i].getPrice() + " lei");
+                System.out.println("Product id: " + invoice.getInvoiceProducts()[i].getId() + "\nProducer: " + invoice.getInvoiceProducts()[i].getProducer() + "\nProduct name: " + invoice.getInvoiceProducts()[i].getName() + "\nProduct flavour: " + invoice.getInvoiceProducts()[i].getFlavour() + "\nWeight: " + invoice.getInvoiceProducts()[i].getWeight() + " kg\nPrice: " + invoice.getInvoiceProducts()[i].getPrice() + " lei");
             }
             System.out.println("Pay method: " + invoice.getPayMethod());
-            System.out.println("Total value: " + invoice.getValue());
+            System.out.println("Total value: " + invoice.getValue() + " lei");
+            System.out.println("***************************");
         }
     }
 }

@@ -15,7 +15,6 @@ public class OrderRepository {
     }
 
     public void listAllOrders() {
-        System.out.println(orders.length);
         ArrayList<Order> allOrders = new ArrayList<Order>();
         for (int i = 0; i < orders.length; i++) {
             allOrders.add(orders[i]);
@@ -44,9 +43,7 @@ public class OrderRepository {
     public ArrayList<Order> getOrdersByCustomer (Customer customer) {
         ArrayList<Order> ordersByCustomer = new ArrayList<Order>();
         for (int i = 0; i < orders.length; i++) {
-            System.out.println(orders[i].getCommandCustomer().getId());
-            System.out.println(customer.getId());
-            if (orders[i].getCommandCustomer().getId() == customer.getId()) {
+            if (orders[i].getCommandCustomer().getEmail().equals(customer.getEmail())) {
                 ordersByCustomer.add(orders[i]);
             }
         }
