@@ -45,8 +45,8 @@ public class Producer {
             System.out.println("Nothing found!");
             return;
         }
-        for (int i = 0; i< producers.size(); i++) {
-            System.out.println(producers.get(i).getId() + " " + producers.get(i).getName() + " " + producers.get(i).getCUI());
+        for (int i = 0; i < producers.size(); i++) {
+            System.out.println("Producer id: " + producers.get(i).getId() + "\nProducer name: " + producers.get(i).getName() + "\nProducer CUI: " + producers.get(i).getCUI());
         }
     }
 }

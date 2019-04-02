@@ -164,7 +164,7 @@ public class OrderService {
 
     private void listCart () {
         for (int i = 0; i < orderProducts.size(); i++) {
-            System.out.println(orderProducts.get(i).getName());
+            System.out.println(orderProducts.get(i).getProducer() + " " + orderProducts.get(i).getName());
         }
         System.out.println("Total: " + totalCartValue + " lei");
     }

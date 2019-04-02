@@ -66,14 +66,14 @@ public class Order {
             return;
         }
         for (int i = 0; i < orders.size(); i++) {
-            System.out.println(orders.get(i).getId());
+            System.out.println("Order id: " + orders.get(i).getId());
             Invoice invoice = orders.get(i).getCommandInvoice();
-            System.out.println(invoice.getId() + " " + invoice.getInvoiceCustomer().getName());
+            System.out.println("Invoice id: " + invoice.getId() + "\nCustomer name: " + invoice.getInvoiceCustomer().getName());
             for (int j = 0; j < invoice.getInvoiceProducts().length; j++) {
-                System.out.println(invoice.getInvoiceProducts()[i].getId() + " " + invoice.getInvoiceProducts()[i].getProducer() + " " + invoice.getInvoiceProducts()[i].getName() + " " + invoice.getInvoiceProducts()[i].getFlavour() + " " + invoice.getInvoiceProducts()[i].getWeight() + " kg " + invoice.getInvoiceProducts()[i].getPrice() + " lei");
+                System.out.println("Product id: " + invoice.getInvoiceProducts()[i].getId() + "\nProducer: " + invoice.getInvoiceProducts()[i].getProducer() + "\nProduct name: " + invoice.getInvoiceProducts()[i].getName() + "\nProduct flavour: " + invoice.getInvoiceProducts()[i].getFlavour() + "Weight: " + invoice.getInvoiceProducts()[i].getWeight() + " kg\nPrice: " + invoice.getInvoiceProducts()[i].getPrice() + " lei");
             }
-            System.out.println(invoice.getPayMethod());
-            System.out.println(invoice.getValue());
+            System.out.println("Pay method: " + invoice.getPayMethod());
+            System.out.println("Total value: " + invoice.getValue());
         }
     }
 }

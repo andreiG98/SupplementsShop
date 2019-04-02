@@ -50,7 +50,7 @@ public class ProducerRepository {
 
     public void listtAllProducers () {
         for (int i = 0; i < producers.length; i++) {
-            System.out.println(producers[i].getId() + " " + producers[i].getName() + " " + producers[i].getCUI());
+            System.out.println("Produicer id: " + producers[i].getId() + "\nProducer name: " + producers[i].getName() + "\nProducer CUI: " + producers[i].getCUI());
         }
     }
 

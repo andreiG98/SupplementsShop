@@ -58,9 +58,10 @@ public class ProteinRepository {
     }
 
     public void listAllProteins () {
-        System.out.println("All available proteins:");
+        System.out.println("All available proteins:\n");
         for (int i = 0; i < proteins.length; i++) {
-            System.out.println(proteins[i].getId() + " " + proteins[i].getProducer() + " " + proteins[i].getName() + " " + proteins[i].getPrice() + " lei " + proteins[i].getDiscount() + " discount " + proteins[i].getWeight() + " kg " + proteins[i].getFlavour() + " flavour " + proteins[i].getConcentration() + " concentration " + proteins[i].getType());
+            System.out.println("Protein id: " + proteins[i].getId() + "\nProtein producer: " + proteins[i].getProducer() + "\nProtein name: " + proteins[i].getName() + "\nPrice: " + proteins[i].getPrice() + " lei\nDiscount " + proteins[i].getDiscount() + "\nWeight: " + proteins[i].getWeight() + " kg\nFlavour: " + proteins[i].getFlavour() + "\nConcentration: " + proteins[i].getConcentration() + "\nType: " + proteins[i].getType());
+            System.out.println("***********************");
         }
     }
 }
