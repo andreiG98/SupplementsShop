@@ -16,12 +16,12 @@ public class CustomerService {
     }
 
     private ArrayList<Customer> getCustomersByASpecificPattern (String partialName) {
-        Customer[] allCustomers = customerRepository.getCustomers();
+        ArrayList<Customer> allCustomers = customerRepository.getCustomers();
         ArrayList<Customer> result = new ArrayList<Customer>();
         String pattern = createPattern(partialName);
-        for (int i = 0; i < allCustomers.length; i++) {
-            if (allCustomers[i] != null && allCustomers[i].getName().matches(pattern)) {
-                result.add(allCustomers[i]);
+        for (int i = 0; i < allCustomers.size(); i++) {
+            if (allCustomers.get(i) != null && allCustomers.get(i).getName().matches(pattern)) {
+                result.add(allCustomers.get(i));
             }
         }
         return result;
@@ -60,8 +60,8 @@ public class CustomerService {
         return false;
     }
 
-    public void addCustomer (int customerId) {
-        if (customerId == -1) {
+    public void addCustomer (Customer newCustomer) {
+        if (newCustomer == null) {
             AddCustomer.addCustomer();
         } else {
             System.out.println("You already have an account!");

@@ -20,7 +20,6 @@ public class Run {
 //        customerService.addCustomer(false);
 //        customerService.getCustomerRepository().listAllCustomers();
         int choice;
-        int customerId = -1;
         Customer loggedCustomer = null;
         while(true) {
             Scanner scanner = new Scanner(System.in);
@@ -31,7 +30,7 @@ public class Run {
             System.out.println("3 - List all available protein");
             System.out.println("4 - List all available vitamins");
             System.out.println("5 - List all producers");
-            System.out.println("6 - Search producer by a name/partial name");
+            System.out.println("6 - Search vitamin by a name/partial name");
             System.out.println("7 - List your orders (if you are logged in)");
             System.out.println("8 - List your invoices (if you are logged in)");
             System.out.println("9 - Search order by order id (if you are logged in)");
@@ -51,7 +50,7 @@ public class Run {
                     //customerId = customerService.logIn(customerId);
                     break;
                 case 1:
-                    customerService.addCustomer(loggedCustomer.getId());
+                    customerService.addCustomer(loggedCustomer);
                     break;
                 case 2:
                     orderService.addOrder(loggedCustomer);
@@ -66,7 +65,7 @@ public class Run {
                     producersService.showProducers();
                     break;
                 case 6:
-                    producersService.searchProducersByASpecificPattern();
+                    orderService.searchVitaminByASpecificPattern();
                     break;
                 case 7:
                     orderService.listMyOrders(loggedCustomer);

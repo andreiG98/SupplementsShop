@@ -2,17 +2,29 @@ package shop.domain.repository;
 
 import shop.domain.entity.Customer;
 import shop.tool.CustomerBuilder;
-import shop.tool.TestData;
+
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class CustomerRepository {
-    static private Customer[] customers;
+    static private ArrayList<Customer> customers;
+    private static File file;
 
-    public CustomerRepository () {
-        int length = TestData.getInstance().getCustomerData().length;
-        this.customers = new Customer[length];
-        for (int i = 0; i < length; i++) {
-            String [] splitedData = TestData.getInstance().getCustomerData()[i].split(";");
-            this.customers[i] =
+    public CustomerRepository (String fileName) {
+        file = new File(fileName);
+        FileInputStream fileInputStream = null;
+        try {
+            fileInputStream = new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        Scanner scanner = new Scanner(fileInputStream);
+        this.customers = new ArrayList<Customer>(10);
+        while (scanner.hasNext()){
+            String line = scanner.nextLine();
+            String[] splitedData = line.split(", ");
+            Customer newEntry =
                     new CustomerBuilder()
                             .withId()
                             .withName(splitedData[0])
@@ -22,52 +34,61 @@ public class CustomerRepository {
                             .withPassword(splitedData[4])
                             .withAddress(splitedData[5])
                             .build();
+            customers.add(newEntry);
         }
     }
 
-    public static void addCustomer (Customer newCustomer) {
-        Customer[] auxCustomer = new Customer[customers.length + 1];
-        for (int i = 0; i < customers.length; i++) {
-            auxCustomer[i] = customers[i];
+    public static void addCustomer (Customer newCustomer, String password) {
+        FileOutputStream fileOutputStream = null;
+        try {
+            fileOutputStream = new FileOutputStream(file, true);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
         }
-        auxCustomer[customers.length] = newCustomer;
-        customers = auxCustomer;
+        String newEntry = newCustomer.getName() + ", " + newCustomer.getCNP() + ", " + newCustomer.getPhoneNumber() + ", " + newCustomer.getEmail() + ", " + password + ", " + newCustomer.getAddress();
+        byte[] newEntryBytes = newEntry.getBytes();
+        customers.add(newCustomer);
+        try {
+            fileOutputStream.write(newEntryBytes);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public Customer getCustomerById (int id) {
-        for (int i = 0; i < customers.length; i++) {
-            if (customers[i].getId() == id) {
-                return customers[i];
+        for (int i = 0; i < customers.size(); i++) {
+            if (customers.get(i).getId() == id) {
+                return customers.get(i);
             }
         }
         return null;
     }
 
     public Customer getCustomerByCNP (String CNP) {
-        for (int i = 0; i < customers.length; i++) {
-            if (customers[i].getCNP().equals(CNP)) {
-                return customers[i];
+        for (int i = 0; i < customers.size(); i++) {
+            if (customers.get(i).getCNP().equals(CNP)) {
+                return customers.get(i);
             }
         }
         return null;
     }
 
     public Customer getCustomerByEmail (String email) {
-        for (int i = 0; i < customers.length; i++) {
-            if (customers[i].getEmail().equals(email)) {
-                return customers[i];
+        for (int i = 0; i < customers.size(); i++) {
+            if (customers.get(i).getEmail().equals(email)) {
+                return customers.get(i);
             }
         }
         return null;
     }
 
     public void listAllCustomers () {
-        for (int i = 0; i < customers.length; i++) {
-            System.out.println(customers[i].getId() + " " + customers[i].getName() + " " + customers[i].getCNP() + " " + customers[i].getPhoneNumber() + " " + customers[i].getEmail() + " " + customers[i].getAddress());
+        for (int i = 0; i < customers.size(); i++) {
+            System.out.println(customers.get(i).getId() + " " + customers.get(i).getName() + " " + customers.get(i).getCNP() + " " + customers.get(i).getPhoneNumber() + " " + customers.get(i).getEmail() + " " + customers.get(i).getAddress());
         }
     }
 
-    public Customer[] getCustomers() {
+    public ArrayList<Customer> getCustomers() {
         return customers;
     }
 

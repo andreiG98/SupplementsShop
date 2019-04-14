@@ -30,6 +30,10 @@ public class VitaminRepository {
         }
     }
 
+    public Vitamin[] getVitamins() {
+        return vitamins;
+    }
+
     public ArrayList<Vitamin> getVitaminsByForm (String form) {
         ArrayList<Vitamin> vitaminsByForm = new ArrayList<Vitamin>();
         for (int i = 0; i < vitamins.length; i++) {

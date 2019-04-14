@@ -206,10 +206,11 @@ public class OrderService {
     }
 
     public void listProteinsByConcentration () {
-        System.out.println("Enter desired concentration: ");
+        System.out.println("Enter desired concentration(X%): ");
         Scanner scanner = new Scanner(System.in);
         double concentration = scanner.nextDouble();
         scanner.nextLine();
+        concentration /= 100;
         ArrayList<Protein> proteins = proteinRepository.getProteinByConcentration(concentration);
         if (proteins.size() == 0) {
             System.out.println("Nothing found!");
@@ -218,6 +219,46 @@ public class OrderService {
         for (int i = 0; i < proteins.size(); i++) {
             System.out.println(proteins.get(i).getId() + " " + proteins.get(i).getProducer() + " " + proteins.get(i).getName() + " " + proteins.get(i).getPrice() + " lei " + proteins.get(i).getDiscount() + " discount " + proteins.get(i).getWeight() + " kg " + proteins.get(i).getFlavour() + " flavour " + proteins.get(i).getConcentration() + " concentration " + proteins.get(i).getType());
         }
+    }
+
+    private ArrayList<Vitamin> getVitaminsByASpecificPattern (String partialName) {
+        Vitamin[] allVitamins = vitaminRepository.getVitamins();
+        ArrayList<Vitamin> result = new ArrayList<Vitamin>();
+        String pattern = createPattern(partialName);
+        String vitamin;
+        for (int i = 0; i < allVitamins.length; i++) {
+            vitamin = allVitamins[i].getName().toLowerCase();
+            if (allVitamins[i] != null && vitamin.matches(pattern)) {
+                result.add(allVitamins[i]);
+            }
+        }
+        return result;
+    }
+
+    public void searchVitaminByASpecificPattern () {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Give me name/partial name of vitamin:");
+        String partialName = scanner.nextLine();
+        ArrayList<Vitamin> result = getVitaminsByASpecificPattern(partialName);
+        Vitamin.show(result);
+    }
+
+    private String createPattern (String partialName) {
+        String[] splitedPartialName = partialName.split("\\s");
+        StringBuilder resultPattern = new StringBuilder();
+        for (int i = 0; i < splitedPartialName.length; i++) {
+            splitedPartialName[i].toLowerCase();
+            resultPattern.append("[a-z]*");
+            resultPattern.append("[\\s]*");
+            resultPattern.append(splitedPartialName[i]);
+            resultPattern.append("[\\s]*");
+            resultPattern.append("[a-z]*");
+            resultPattern.append("[\\s]*");
+        }
+        resultPattern.append("[a-z]*");
+        resultPattern.append("[\\s]*");
+        //System.out.println(resultPattern.toString());
+        return resultPattern.toString();
     }
 
 }

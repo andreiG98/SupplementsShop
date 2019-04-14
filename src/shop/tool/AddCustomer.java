@@ -4,12 +4,19 @@ import shop.domain.entity.Customer;
 import shop.domain.repository.CustomerRepository;
 
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class AddCustomer {
     static String[] customerData;
 
+    public static boolean emailMatcher(String email) {
+        Pattern pattern = Pattern.compile("[a-z-_.]+@[a-z]+.[a-z]");
+        Matcher matcher = pattern.matcher(email);
+        return matcher.find();
+    }
+
     public static void addCustomer () {
-        String[] customerDataAux = TestData.getInstance().getCustomerData();
         String name;
         String CNP;
         String phoneNumber;
@@ -25,6 +32,10 @@ public class AddCustomer {
         phoneNumber = scanner.nextLine();
         System.out.println("Type in email: ");
         email = scanner.nextLine();
+        while (!emailMatcher(email)) {
+            System.out.println("Type a valid email: ");
+            email = scanner.nextLine();
+        }
         System.out.println("Type in password: ");
         password = scanner.nextLine();
         System.out.println("Type in address: ");
@@ -37,8 +48,8 @@ public class AddCustomer {
                         .withPhoneNumber(phoneNumber)
                         .withEmail(email)
                         .withPassword(password)
-                        .withAddress(password)
+                        .withAddress(address)
                         .build();
-        CustomerRepository.addCustomer(newCustomer);
+        CustomerRepository.addCustomer(newCustomer, password);
     }
 }

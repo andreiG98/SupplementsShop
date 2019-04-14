@@ -3,7 +3,7 @@ package shop.configuration;
 import shop.domain.repository.*;
 
 public class RepositoryConfiguration {
-    private final CustomerRepository customerRepository = new CustomerRepository();
+    private final CustomerRepository customerRepository = new CustomerRepository("D:\\JavaProjects\\SupplementsShop\\src\\shop\\configuration\\customerFile.csv");
     private final OrderRepository orderRepository = new OrderRepository();
     private final ProteinRepository proteinRepository = new ProteinRepository();
     private final VitaminRepository vitaminRepository = new VitaminRepository();
