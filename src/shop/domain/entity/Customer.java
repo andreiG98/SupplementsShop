@@ -55,4 +55,9 @@ public class Customer extends Person{
             System.out.println(customers.get(i).getId() + " " + customers.get(i).getName() + " " + customers.get(i).getCNP() + " " + customers.get(i).getPhoneNumber()+ " " + customers.get(i).getEmail() + " " + customers.get(i).getAddress());
         }
     }
+
+    @Override
+    public String toString() {
+        return getName() + ", " + getCNP() + ", " + getPhoneNumber() + ", " + email + ", " + password + ", " + address;
+    }
 }

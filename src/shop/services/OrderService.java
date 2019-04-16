@@ -153,7 +153,7 @@ public class OrderService {
         invoiceRepository.addInvoice(invoice);
         Courier courier = courierRepository.getCouriersByWorkZone("Sector 6").get(0);
         Order order = new Order(customer, invoice, courier);
-        orderRepository.addOrder(order);
+        orderRepository.addOrder(order, customer);
         System.out.println("Thank you for order!");
     }
 

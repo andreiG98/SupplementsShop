@@ -61,6 +61,10 @@ public class Order {
     }
 
     public static void show (ArrayList<Order> orders) {
+        if (orders == null) {
+            System.out.println("Nothing found!");
+            return;
+        }
         if (orders.size() == 0) {
             System.out.println("Nothing found!");
             return;
