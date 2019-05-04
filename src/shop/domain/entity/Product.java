@@ -64,4 +64,9 @@ public abstract class Product {
     public void setProducer(String producer) {
         this.producer = producer;
     }
+
+    @Override
+    public String toString() {
+        return getId() + ", ";
+    }
 }

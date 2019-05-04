@@ -45,7 +45,7 @@ public class CustomerRepository {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        String newEntry = newCustomer.getName() + ", " + newCustomer.getCNP() + ", " + newCustomer.getPhoneNumber() + ", " + newCustomer.getEmail() + ", " + password + ", " + newCustomer.getAddress();
+        String newEntry = newCustomer.toString();
         byte[] newEntryBytes = newEntry.getBytes();
         customers.add(newCustomer);
         try {
@@ -55,7 +55,7 @@ public class CustomerRepository {
         }
     }
 
-    public Customer getCustomerById (int id) {
+    public static Customer getCustomerById (int id) {
         for (int i = 0; i < customers.size(); i++) {
             if (customers.get(i).getId() == id) {
                 return customers.get(i);

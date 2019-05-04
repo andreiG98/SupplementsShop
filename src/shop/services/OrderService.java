@@ -149,8 +149,8 @@ public class OrderService {
                         .withPayMethod(payMethod)
                         .withInvoiceProducts(invoiceProducts)
                         .build();
-        totalCartValue = 0;
         invoiceRepository.addInvoice(invoice);
+        totalCartValue = 0;
         Courier courier = courierRepository.getCouriersByWorkZone("Sector 6").get(0);
         Order order = new Order(customer, invoice, courier);
         orderRepository.addOrder(order, customer);
@@ -222,14 +222,14 @@ public class OrderService {
     }
 
     private ArrayList<Vitamin> getVitaminsByASpecificPattern (String partialName) {
-        Vitamin[] allVitamins = vitaminRepository.getVitamins();
+        ArrayList<Vitamin> allVitamins = vitaminRepository.getVitamins();
         ArrayList<Vitamin> result = new ArrayList<Vitamin>();
         String pattern = createPattern(partialName);
         String vitamin;
-        for (int i = 0; i < allVitamins.length; i++) {
-            vitamin = allVitamins[i].getName().toLowerCase();
-            if (allVitamins[i] != null && vitamin.matches(pattern)) {
-                result.add(allVitamins[i]);
+        for (int i = 0; i < allVitamins.size(); i++) {
+            vitamin = allVitamins.get(i).getName().toLowerCase();
+            if (allVitamins.get(i) != null && vitamin.matches(pattern)) {
+                result.add(allVitamins.get(i));
             }
         }
         return result;

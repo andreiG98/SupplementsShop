@@ -28,4 +28,9 @@ public class Protein extends Product {
     public void setType(String type) {
         this.type = type;
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "p";
+    }
 }

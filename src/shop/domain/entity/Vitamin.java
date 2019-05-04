@@ -41,4 +41,9 @@ public class Vitamin extends Product {
             System.out.println("***************************");
         }
     }
+
+    @Override
+    public String toString() {
+        return super.toString() + "v";
+    }
 }

@@ -2,38 +2,52 @@ package shop.domain.repository;
 
 import shop.domain.entity.Protein;
 import shop.tool.ProteinBuilder;
-import shop.tool.TestData;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class ProteinRepository {
-    private Protein[] proteins;
+    private static ArrayList<Protein> proteins;
+    private static File file;
 
-    public ProteinRepository () {
-        int length = TestData.getInstance().getProteinData().length;
-        this.proteins = new Protein[length];
-        for (int i = 0; i < length; i++) {
-            String [] splitedData = TestData.getInstance().getProteinData()[i].split(";");
-            this.proteins[i] =
-                    new ProteinBuilder()
-                            .withId()
-                            .withName(splitedData[0])
-                            .withPrice(Double.parseDouble(splitedData[1]))
-                            .withDiscount(Double.parseDouble(splitedData[2]))
-                            .withWeight(Double.parseDouble(splitedData[3]))
-                            .withFlavour(splitedData[4])
-                            .withConcentration(Double.parseDouble(splitedData[5]))
-                            .withType(splitedData[6])
-                            .withProducer(splitedData[7])
-                            .build();
-
+    public ProteinRepository (String fileName) {
+        file = new File(fileName);
+        FileInputStream fileInputStream = null;
+        try {
+            fileInputStream = new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        Scanner scanner = new Scanner(fileInputStream);
+        this.proteins = new ArrayList<Protein>(10);
+        while (scanner.hasNext()){
+            String line = scanner.nextLine();
+            String[] splitedData = line.split(", ");
+            if (splitedData[0].equals("p")) {
+                Protein newEntry =
+                        new ProteinBuilder()
+                                .withId()
+                                .withName(splitedData[1])
+                                .withPrice(Double.parseDouble(splitedData[2]))
+                                .withDiscount(Double.parseDouble(splitedData[3]))
+                                .withWeight(Double.parseDouble(splitedData[4]))
+                                .withFlavour(splitedData[5])
+                                .withConcentration(Double.parseDouble(splitedData[6]))
+                                .withType(splitedData[7])
+                                .withProducer(splitedData[8])
+                                .build();
+                proteins.add(newEntry);   
+            }
         }
     }
 
-    public Protein getProteinById (int id) {
-        for (int i = 0; i < proteins.length; i++) {
-            if (proteins[i].getId() == id) {
-                return proteins[i];
+    public static Protein getProteinById (int id) {
+        for (int i = 0; i < proteins.size(); i++) {
+            if (proteins.get(i).getId() == id) {
+                return proteins.get(i);
             }
         }
         return null;
@@ -41,26 +55,26 @@ public class ProteinRepository {
 
     public ArrayList<Protein> getProteinByConcentration (double concentration) {
         ArrayList<Protein> proteinsByConcentration = new ArrayList<Protein>();
-        for (int i = 0; i < proteins.length; i++) {
-            if (proteins[i].getConcentration() == concentration)
-                proteinsByConcentration.add(proteins[i]);
+        for (int i = 0; i < proteins.size(); i++) {
+            if (proteins.get(i).getConcentration() == concentration)
+                proteinsByConcentration.add(proteins.get(i));
         }
         return proteinsByConcentration;
     }
 
     public ArrayList<Protein> getProteinByType (String type) {
         ArrayList<Protein> proteinsByType = new ArrayList<Protein>();
-        for (int i = 0; i < proteins.length; i++) {
-            if (proteins[i].getType().equals(type))
-                proteinsByType.add(proteins[i]);
+        for (int i = 0; i < proteins.size(); i++) {
+            if (proteins.get(i).getType().equals(type))
+                proteinsByType.add(proteins.get(i));
         }
         return proteinsByType;
     }
 
     public void listAllProteins () {
         System.out.println("All available proteins:\n");
-        for (int i = 0; i < proteins.length; i++) {
-            System.out.println("Protein id: " + proteins[i].getId() + "\nProtein producer: " + proteins[i].getProducer() + "\nProtein name: " + proteins[i].getName() + "\nPrice: " + proteins[i].getPrice() + " lei\nDiscount " + proteins[i].getDiscount() + "\nWeight: " + proteins[i].getWeight() + " kg\nFlavour: " + proteins[i].getFlavour() + "\nConcentration: " + proteins[i].getConcentration() + "\nType: " + proteins[i].getType());
+        for (int i = 0; i < proteins.size(); i++) {
+            System.out.println("Protein id: " + proteins.get(i).getId() + "\nProtein producer: " + proteins.get(i).getProducer() + "\nProtein name: " + proteins.get(i).getName() + "\nPrice: " + proteins.get(i).getPrice() + " lei\nDiscount " + proteins.get(i).getDiscount() + "\nWeight: " + proteins.get(i).getWeight() + " kg\nFlavour: " + proteins.get(i).getFlavour() + "\nConcentration: " + proteins.get(i).getConcentration() + "\nType: " + proteins.get(i).getType());
             System.out.println("***********************");
         }
     }

@@ -52,7 +52,7 @@ public class Customer extends Person{
             return;
         }
         for (int i = 0; i < customers.size(); i++) {
-            System.out.println(customers.get(i).getId() + " " + customers.get(i).getName() + " " + customers.get(i).getCNP() + " " + customers.get(i).getPhoneNumber()+ " " + customers.get(i).getEmail() + " " + customers.get(i).getAddress());
+            System.out.println(customers.get(i).getId() + " " + customers.toString());
         }
     }
 

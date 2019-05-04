@@ -2,7 +2,6 @@ package shop.domain.repository;
 
 import shop.domain.entity.Customer;
 import shop.domain.entity.Order;
-import shop.tool.CustomerBuilder;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -33,16 +32,17 @@ public class OrderRepository {
         while (scanner.hasNext()) {
             String line = scanner.nextLine();
             String[] splitedData = line.split(", ");
-            Customer orderCustomer =
-                    new CustomerBuilder()
-                            .withName(splitedData[0])
-                            .withCNP(splitedData[1])
-                            .withPhoneNumber(splitedData[2])
-                            .withEmail(splitedData[3])
-                            .withPassword(splitedData[4])
-                            .withAddress(splitedData[5])
-                            .build();
-            //Order newEntry = new Order(splitedData[0], splitedData[1], splitedData[2]);
+            int idCustomer = Integer.parseInt(splitedData[0]);
+            Order newEntry = new Order(CustomerRepository.getCustomerById(idCustomer), InvoiceRepository.getInvoiceById(Integer.parseInt(splitedData[1])), CourierRepository.getCourierByDrivingLicense(Integer.parseInt(splitedData[2])));
+            ArrayList<Order> ordersByCustomer = orders.get(idCustomer);
+            if (ordersByCustomer != null) {
+                System.out.println("o comanda");
+                ordersByCustomer.add(newEntry);
+            } else {
+                ordersByCustomer = new ArrayList<Order>(10);
+                ordersByCustomer.add(newEntry);
+            }
+            orders.put(idCustomer, ordersByCustomer);
         }
     }
 
@@ -62,7 +62,7 @@ public class OrderRepository {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        String newEntry = order.getCommandCustomer().toString() + ", " + order.getCommandInvoice().toString() + ", " + order.getCommandCourier() + "\n";
+        String newEntry = order.getCommandCustomer().getId() + ", " + order.getCommandInvoice().getId() + ", " + order.getCommandCourier().getDrivingLicenseNo() + "\n";
         byte[] newEntryBytes = newEntry.getBytes();
         ArrayList<Order> ordersOfCustomer = orders.get(customer.getId());
         if (ordersOfCustomer == null)

@@ -70,12 +70,14 @@ public class Order {
             return;
         }
         for (int i = 0; i < orders.size(); i++) {
-            System.out.println("Order id: " + orders.get(i).getId());
+            System.out.println("Order id: " + orders.get(i).getId() + "\n");
             Invoice invoice = orders.get(i).getCommandInvoice();
-            System.out.println("Invoice id: " + invoice.getId() + "\nCustomer name: " + invoice.getInvoiceCustomer().getName());
+            System.out.println("Invoice id: " + invoice.getId() + "\n\nCustomer name: " + invoice.getInvoiceCustomer().getName() + "\n");
             for (int j = 0; j < invoice.getInvoiceProducts().length; j++) {
-                System.out.println("Product id: " + invoice.getInvoiceProducts()[i].getId() + "\nProducer: " + invoice.getInvoiceProducts()[i].getProducer() + "\nProduct name: " + invoice.getInvoiceProducts()[i].getName() + "\nProduct flavour: " + invoice.getInvoiceProducts()[i].getFlavour() + "\nWeight: " + invoice.getInvoiceProducts()[i].getWeight() + " kg\nPrice: " + invoice.getInvoiceProducts()[i].getPrice() + " lei");
+                System.out.println("Product id: " + invoice.getInvoiceProducts()[i].getId() + "\nProducer: " + invoice.getInvoiceProducts()[i].getProducer() + "\nProduct name: " + invoice.getInvoiceProducts()[i].getName() + "\nProduct flavour: " + invoice.getInvoiceProducts()[i].getFlavour() + "\nWeight: " + invoice.getInvoiceProducts()[i].getWeight() + " kg\nPrice: " + invoice.getInvoiceProducts()[i].getPrice() + " lei" + "\n");
             }
+            System.out.println("Courier name: " + orders.get(i).getCommandCourier().getName());
+            System.out.println("Courier phone number: " + orders.get(i).getCommandCourier().getPhoneNumber() + "\n");
             System.out.println("Pay method: " + invoice.getPayMethod());
             System.out.println("Total value: " + invoice.getValue() + " lei");
             System.out.println("***************************");

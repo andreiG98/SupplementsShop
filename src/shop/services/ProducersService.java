@@ -15,12 +15,12 @@ public class ProducersService {
     }
 
     private ArrayList<Producer> getProducersByASpecificPattern (String partialName) {
-        Producer[] allProducers = producerRepository.getProducers();
+        ArrayList<Producer> allProducers = producerRepository.getProducers();
         ArrayList<Producer> result = new ArrayList<Producer>();
         String pattern = createPattern(partialName);
-        for (int i = 0; i < allProducers.length; i++) {
-            if (allProducers[i] != null && allProducers[i].getName().matches(pattern)) {
-                result.add(allProducers[i]);
+        for (int i = 0; i < allProducers.size(); i++) {
+            if (allProducers.get(i) != null && allProducers.get(i).getName().matches(pattern)) {
+                result.add(allProducers.get(i));
             }
         }
         return result;
