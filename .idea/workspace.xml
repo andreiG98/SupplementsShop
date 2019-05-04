@@ -2,47 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="708d65c8-35c2-401b-a771-2052b07f69e6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/shop/configuration/courier-file.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shop/configuration/invoice-file.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shop/configuration/order-file.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shop/configuration/producer-file.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/shop/configuration/product-file.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SupplementsShop/shop/configuration/RepositoryConfiguration.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SupplementsShop/shop/configuration/RepositoryConfiguration.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SupplementsShop/shop/configuration/customerFile.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SupplementsShop/shop/configuration/orderFile.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SupplementsShop/shop/domain/entity/Customer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SupplementsShop/shop/domain/entity/Customer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SupplementsShop/shop/domain/entity/Invoice.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SupplementsShop/shop/domain/entity/Invoice.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SupplementsShop/shop/domain/repository/CourierRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SupplementsShop/shop/domain/repository/CourierRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SupplementsShop/shop/domain/repository/CustomerRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SupplementsShop/shop/domain/repository/CustomerRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SupplementsShop/shop/domain/repository/InvoiceRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SupplementsShop/shop/domain/repository/InvoiceRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SupplementsShop/shop/domain/repository/OrderRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SupplementsShop/shop/domain/repository/OrderRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SupplementsShop/shop/domain/repository/ProducerRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SupplementsShop/shop/domain/repository/ProducerRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SupplementsShop/shop/domain/repository/ProteinRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SupplementsShop/shop/domain/repository/ProteinRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SupplementsShop/shop/domain/repository/VitaminRepository.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SupplementsShop/shop/domain/repository/VitaminRepository.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SupplementsShop/shop/services/CustomerService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SupplementsShop/shop/services/CustomerService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SupplementsShop/shop/services/OrderService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SupplementsShop/shop/services/OrderService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SupplementsShop/shop/services/ProducersService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/SupplementsShop/shop/services/ProducersService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/SupplementsShop/shop/tool/TestData.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/shop/configuration/RepositoryConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shop/configuration/RepositoryConfiguration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shop/configuration/customerFile.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/shop/configuration/customer-file.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shop/configuration/orderFile.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shop/domain/entity/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shop/domain/entity/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shop/domain/entity/Invoice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shop/domain/entity/Invoice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shop/domain/entity/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shop/domain/entity/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shop/domain/entity/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shop/domain/entity/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shop/domain/entity/Protein.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shop/domain/entity/Protein.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shop/domain/entity/Vitamin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shop/domain/entity/Vitamin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shop/domain/repository/CourierRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shop/domain/repository/CourierRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shop/domain/repository/CustomerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shop/domain/repository/CustomerRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shop/domain/repository/InvoiceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shop/domain/repository/InvoiceRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shop/domain/repository/OrderRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shop/domain/repository/OrderRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shop/domain/repository/ProducerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shop/domain/repository/ProducerRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shop/domain/repository/ProteinRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shop/domain/repository/ProteinRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shop/domain/repository/VitaminRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shop/domain/repository/VitaminRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shop/services/OrderService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shop/services/OrderService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shop/services/ProducersService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/shop/services/ProducersService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/shop/tool/TestData.java" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -59,37 +19,14 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/shop/configuration/order-file.csv">
-          <provider selected="true" editor-type-id="csv-text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="15" lean-forward="true" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
-            </state>
-          </provider>
           <provider editor-type-id="csv-table-editor">
             <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/shop/services/ProducersService.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="21" column="66" selection-start-line="21" selection-start-column="66" selection-end-line="21" selection-end-column="66" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/shop/services/OrderService.java">
-          <provider selected="true" editor-type-id="text-editor">
+          <provider selected="true" editor-type-id="csv-text-editor">
             <state relative-caret-position="17">
-              <caret line="151" column="46" selection-start-line="151" selection-start-column="46" selection-end-line="151" selection-end-column="46" />
-              <folding>
-                <element signature="e#948#949#0" expanded="true" />
-                <element signature="e#999#1000#0" expanded="true" />
-                <element signature="method#commandVitamin#0;class#OrderService#0" />
-              </folding>
+              <caret line="1" column="15" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
             </state>
           </provider>
         </entry>
@@ -97,7 +34,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/shop/domain/entity/Order.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="370">
+            <state relative-caret-position="1139">
               <caret line="79" column="52" selection-start-line="79" selection-start-column="52" selection-end-line="79" selection-end-column="52" />
               <folding>
                 <element signature="e#2164#2165#0" expanded="true" />
@@ -110,7 +47,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/shop/domain/entity/Protein.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
+            <state relative-caret-position="340">
               <caret line="33" column="36" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
               <folding>
                 <element signature="e#701#702#0" expanded="true" />
@@ -123,7 +60,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/shop/domain/repository/InvoiceRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="115">
+            <state relative-caret-position="1037">
               <caret line="68" selection-start-line="68" selection-end-line="68" />
             </state>
           </provider>
@@ -132,7 +69,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/shop/domain/entity/Product.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
+            <state relative-caret-position="680">
               <caret line="69" column="30" selection-start-line="69" selection-start-column="30" selection-end-line="69" selection-end-column="30" />
               <folding>
                 <element signature="e#1265#1266#0" expanded="true" />
@@ -142,7 +79,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/shop/domain/entity/Invoice.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="238">
@@ -158,22 +95,43 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/shop/configuration/invoice-file.csv">
-          <provider selected="true" editor-type-id="csv-text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="28" lean-forward="true" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
+        <entry file="file://$PROJECT_DIR$/src/shop/configuration/RepositoryConfiguration.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="12" column="109" lean-forward="true" selection-start-line="12" selection-start-column="109" selection-end-line="12" selection-end-column="109" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/shop/configuration/customer-file.csv">
           <provider editor-type-id="csv-table-editor">
             <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+          </provider>
+          <provider selected="true" editor-type-id="csv-text-editor">
+            <state relative-caret-position="146">
+              <caret line="16" column="64" selection-start-line="16" selection-start-column="60" selection-end-line="16" selection-end-column="64" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/shop/configuration/invoice-file.csv">
+          <provider editor-type-id="csv-table-editor">
+            <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+          </provider>
+          <provider selected="true" editor-type-id="csv-text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="28" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
+            </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/shop/domain/repository/OrderRepository.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="41" column="60" lean-forward="true" selection-start-line="41" selection-start-column="60" selection-end-line="41" selection-end-column="60" />
+            <state relative-caret-position="595">
+              <caret line="41" column="60" selection-start-line="41" selection-start-column="60" selection-end-line="41" selection-end-column="60" />
             </state>
           </provider>
         </entry>
@@ -207,6 +165,7 @@
       <find>;</find>
       <find>length</find>
       <find>[i]</find>
+      <find>&quot;D:\\JavaProjects\\SupplementsShop\\src\\shop\\configuration\\</find>
     </findStrings>
     <replaceStrings>
       <replace>,</replace>
@@ -221,6 +180,8 @@
       <replace>Customer</replace>
       <replace>size()</replace>
       <replace>.get(i)</replace>
+      <replace>path</replace>
+      <replace>path + &quot;</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -275,11 +236,11 @@
         <option value="$PROJECT_DIR$/src/shop/domain/repository/ProteinRepository.java" />
         <option value="$PROJECT_DIR$/src/shop/configuration/order-file.csv" />
         <option value="$PROJECT_DIR$/src/shop/configuration/invoice-file.csv" />
-        <option value="$PROJECT_DIR$/src/shop/configuration/RepositoryConfiguration.java" />
         <option value="$PROJECT_DIR$/src/shop/domain/repository/CourierRepository.java" />
         <option value="$PROJECT_DIR$/src/shop/domain/repository/OrderRepository.java" />
         <option value="$PROJECT_DIR$/src/shop/domain/entity/Invoice.java" />
         <option value="$PROJECT_DIR$/src/shop/domain/entity/Order.java" />
+        <option value="$PROJECT_DIR$/src/shop/configuration/RepositoryConfiguration.java" />
       </list>
     </option>
   </component>
@@ -293,8 +254,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -423,17 +384,17 @@
       <workItem from="1556643199501" duration="3579000" />
       <workItem from="1556699948613" duration="2026000" />
       <workItem from="1556811591087" duration="11258000" />
+      <workItem from="1556995791818" duration="429000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31085000" />
+    <option name="totallyTimeSpent" value="31514000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22184986" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18900804" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -442,7 +403,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3281471" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.1923621" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.6746818" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.8599717" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -507,13 +468,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/shop/tool/TestData.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="23" column="4" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/shop/tool/TestData.java" />
     <entry file="file://$PROJECT_DIR$/src/shop/tool/ProducerBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -643,28 +598,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/shop/configuration/RepositoryConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="8" column="56" selection-start-line="8" selection-start-column="56" selection-end-line="8" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/shop/services/CustomerService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/shop/configuration/customer-file.csv">
-      <provider editor-type-id="text-editor" />
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-      </provider>
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="64" selection-start-line="16" selection-start-column="60" selection-end-line="16" selection-end-column="64" />
         </state>
       </provider>
     </entry>
@@ -684,7 +621,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/shop/services/OrderService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
+        <state relative-caret-position="1955">
           <caret line="151" column="46" selection-start-line="151" selection-start-column="46" selection-end-line="151" selection-end-column="46" />
           <folding>
             <element signature="e#948#949#0" expanded="true" />
@@ -694,41 +631,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/shop/configuration/order-file.csv">
-      <provider editor-type-id="text-editor" />
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-      </provider>
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="15" lean-forward="true" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/shop/configuration/invoice-file.csv">
-      <provider editor-type-id="csv-table-editor">
-        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
-      </provider>
-      <provider selected="true" editor-type-id="csv-text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="28" lean-forward="true" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/shop/domain/entity/Product.java">
+    <entry file="file://$PROJECT_DIR$/src/shop/domain/entity/Order.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="69" column="30" selection-start-line="69" selection-start-column="30" selection-end-line="69" selection-end-column="30" />
+        <state relative-caret-position="1139">
+          <caret line="79" column="52" selection-start-line="79" selection-start-column="52" selection-end-line="79" selection-end-column="52" />
           <folding>
-            <element signature="e#1265#1266#0" expanded="true" />
-            <element signature="e#1302#1303#0" expanded="true" />
+            <element signature="e#2164#2165#0" expanded="true" />
+            <element signature="e#2202#2203#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/shop/domain/entity/Protein.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
+        <state relative-caret-position="340">
           <caret line="33" column="36" selection-start-line="33" selection-start-column="36" selection-end-line="33" selection-end-column="36" />
           <folding>
             <element signature="e#701#702#0" expanded="true" />
@@ -739,26 +655,26 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/shop/domain/repository/InvoiceRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="115">
+        <state relative-caret-position="1037">
           <caret line="68" selection-start-line="68" selection-end-line="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/shop/domain/entity/Product.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="680">
+          <caret line="69" column="30" selection-start-line="69" selection-start-column="30" selection-end-line="69" selection-end-column="30" />
+          <folding>
+            <element signature="e#1265#1266#0" expanded="true" />
+            <element signature="e#1302#1303#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/shop/domain/repository/OrderRepository.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="41" column="60" lean-forward="true" selection-start-line="41" selection-start-column="60" selection-end-line="41" selection-end-column="60" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/shop/domain/entity/Order.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="79" column="52" selection-start-line="79" selection-start-column="52" selection-end-line="79" selection-end-column="52" />
-          <folding>
-            <element signature="e#2164#2165#0" expanded="true" />
-            <element signature="e#2202#2203#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="595">
+          <caret line="41" column="60" selection-start-line="41" selection-start-column="60" selection-end-line="41" selection-end-column="60" />
         </state>
       </provider>
     </entry>
@@ -774,6 +690,45 @@
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/shop/configuration/RepositoryConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="109" lean-forward="true" selection-start-line="12" selection-start-column="109" selection-end-line="12" selection-end-column="109" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/shop/configuration/customer-file.csv">
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="146">
+          <caret line="16" column="64" selection-start-line="16" selection-start-column="60" selection-end-line="16" selection-end-column="64" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/shop/configuration/invoice-file.csv">
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="28" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/shop/configuration/order-file.csv">
+      <provider editor-type-id="csv-table-editor">
+        <state showInfoPanel="true" fixedHeaders="false" rowLines="3" />
+      </provider>
+      <provider selected="true" editor-type-id="csv-text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="15" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
