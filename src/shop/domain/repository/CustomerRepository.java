@@ -38,14 +38,15 @@ public class CustomerRepository {
         }
     }
 
-    public static void addCustomer (Customer newCustomer, String password) {
+    public static void addCustomer (Customer newCustomer) {
         FileOutputStream fileOutputStream = null;
         try {
             fileOutputStream = new FileOutputStream(file, true);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        String newEntry = newCustomer.toString();
+        String newEntry = "\n";
+        newEntry += newCustomer.toString();
         byte[] newEntryBytes = newEntry.getBytes();
         customers.add(newCustomer);
         try {

@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 public class CustomerService {
     private CustomerRepository customerRepository = RepositoryConfiguration.getInstance().getCustomerRepository();
+    private CsvService csvService = new CsvService();
 
     public CustomerService() {
         System.out.println("Creating Customer Service");
@@ -61,6 +62,8 @@ public class CustomerService {
     }
 
     public void addCustomer (Customer newCustomer) {
+        String action = "Add customer";
+        CsvService.writeAudit(action);
         if (newCustomer == null) {
             AddCustomer.addCustomer();
         } else {
@@ -69,6 +72,8 @@ public class CustomerService {
     }
 
     public Customer logIn (Customer loggedCustomer) {
+        String action = "Log In";
+        CsvService.writeAudit(action);
         Scanner scanner = new Scanner(System.in);
         boolean tryAgain = true;
         //boolean loggedIn = false;

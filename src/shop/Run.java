@@ -11,8 +11,6 @@ public class Run {
 
     public static void main(String[] args) {
 	// write your code here
-
-
         System.out.println("Welcome to Andrew's Supplemets Shop!");
         CustomerService customerService = new CustomerService();
         OrderService orderService = new OrderService();

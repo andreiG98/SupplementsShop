@@ -29,10 +29,10 @@ public class InvoiceRepository {
             String[] splitedData = line.split(", ");
             ArrayList<Product> invoiceProducts = new ArrayList<Product>(10);
             for (int i = 3; i < splitedData.length; i += 2) {
-                if (splitedData[i].equals("p")) {
-                    invoiceProducts.add(ProteinRepository.getProteinById(Integer.parseInt(splitedData[i + 1])));
-                } else if (splitedData[i].equals("v")) {
-                    invoiceProducts.add(VitaminRepository.getVitaminById(Integer.parseInt(splitedData[i + 1])));
+                if (splitedData[i + 1].equals("p")) {
+                    invoiceProducts.add(ProteinRepository.getProteinById(Integer.parseInt(splitedData[i])));
+                } else if (splitedData[i + 1].equals("v")) {
+                    invoiceProducts.add(VitaminRepository.getVitaminById(Integer.parseInt(splitedData[i])));
                 }
             }
             Product[] invoiceProductsArray = invoiceProducts.toArray(new Product[invoiceProducts.size()]);

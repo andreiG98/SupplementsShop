@@ -11,6 +11,8 @@ public class ProducersService {
     private ProducerRepository producerRepository = RepositoryConfiguration.getInstance().getProducerRepository();
 
     public void showProducers() {
+        String action = "Show producers";
+        CsvService.writeAudit(action);
         producerRepository.listtAllProducers();
     }
 

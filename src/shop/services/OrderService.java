@@ -6,6 +6,7 @@ import shop.domain.repository.*;
 import shop.tool.InvoiceBuilder;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Scanner;
 
 public class OrderService {
@@ -19,10 +20,14 @@ public class OrderService {
     private double totalCartValue;
 
     public void showProtein() {
+        String action = "Show proteins";
+        CsvService.writeAudit(action);
         proteinRepository.listAllProteins();
     }
 
     public void showVitamins() {
+        String action = "Show vitamins";
+        CsvService.writeAudit(action);
         vitaminRepository.listAllvitamins();
     }
 
@@ -31,6 +36,8 @@ public class OrderService {
     }
 
     public void addOrder (Customer customer) {
+        String action = "Add order";
+        CsvService.writeAudit(action);
         Scanner scanner = new Scanner(System.in);
         int choice;
         totalCartValue = 0;
@@ -130,6 +137,7 @@ public class OrderService {
 
     private void sendCommand(Customer customer) {
         String payMethod;
+        Random random = new Random();
         Scanner scanner = new Scanner(System.in);
         do {
             System.out.println("Please choose pay method: cash/card");
@@ -151,13 +159,16 @@ public class OrderService {
                         .build();
         invoiceRepository.addInvoice(invoice);
         totalCartValue = 0;
-        Courier courier = courierRepository.getCouriersByWorkZone("Sector 6").get(0);
+        String commandZone = customer.getAddress().substring(customer.getAddress().length() - 1);
+        Courier courier = courierRepository.getCouriersByWorkZone("Sector " + commandZone).get(random.nextInt(courierRepository.getCouriersByWorkZone("Sector " + commandZone).size()));
         Order order = new Order(customer, invoice, courier);
         orderRepository.addOrder(order, customer);
         System.out.println("Thank you for order!");
     }
 
     public void listMyOrders (Customer customer) {
+        String action = "List my orders";
+        CsvService.writeAudit(action);
         if (customer == null) {
             System.out.println("You need to be logged in!");
             return;
@@ -168,6 +179,8 @@ public class OrderService {
     }
 
     public void listMyInvoices (Customer customer) {
+        String action = "List my invoices";
+        CsvService.writeAudit(action);
         if (customer == null) {
             System.out.println("You need to be logged in!");
             return;
@@ -185,6 +198,8 @@ public class OrderService {
     }
 
     public void listOrderById (Customer customer) {
+        String action = "List order by id";
+        CsvService.writeAudit(action);
         if (customer == null) {
             System.out.println("You need to be logged in!");
             return;
@@ -206,6 +221,8 @@ public class OrderService {
     }
 
     public void listProteinsByConcentration () {
+        String action = "List proteins by concentration";
+        CsvService.writeAudit(action);
         System.out.println("Enter desired concentration(X%): ");
         Scanner scanner = new Scanner(System.in);
         double concentration = scanner.nextDouble();
@@ -222,6 +239,8 @@ public class OrderService {
     }
 
     private ArrayList<Vitamin> getVitaminsByASpecificPattern (String partialName) {
+        String action = "Get vitamins by a specific pattern";
+        CsvService.writeAudit(action);
         ArrayList<Vitamin> allVitamins = vitaminRepository.getVitamins();
         ArrayList<Vitamin> result = new ArrayList<Vitamin>();
         String pattern = createPattern(partialName);

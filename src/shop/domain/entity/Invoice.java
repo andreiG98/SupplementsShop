@@ -81,8 +81,10 @@ public class Invoice {
             Invoice invoice = invoices.get(i);
             System.out.println("Invoice id: " + invoice.getId() + "\n");
             System.out.println("Customer name: " + invoice.getInvoiceCustomer().getName() + "\n");
-            for (int j = 0; j < invoice.getInvoiceProducts().length; j++) {
-                System.out.println("Product id: " + invoice.getInvoiceProducts()[i].getId() + "\nProducer: " + invoice.getInvoiceProducts()[i].getProducer() + "\nProduct name: " + invoice.getInvoiceProducts()[i].getName() + "\nProduct flavour: " + invoice.getInvoiceProducts()[i].getFlavour() + "\nWeight: " + invoice.getInvoiceProducts()[i].getWeight() + " kg\nPrice: " + invoice.getInvoiceProducts()[i].getPrice() + " lei" + "\n");
+            Product[] invoiceProducts = invoice.getInvoiceProducts();
+            System.out.println(invoiceProducts.length);
+            for (int j = 0; j < invoiceProducts.length; j++) {
+                System.out.println("Producer: " + invoiceProducts[i].getProducer() + "\nProduct name: " + invoiceProducts[i].getName() + "\nProduct flavour: " + invoiceProducts[i].getFlavour() + "\nWeight: " + invoiceProducts[i].getWeight() + " kg\nPrice: " + invoiceProducts[i].getPrice() + " lei" + "\n");
             }
             System.out.println("Pay method: " + invoice.getPayMethod());
             System.out.println("Total value: " + invoice.getValue() + " lei");

@@ -74,7 +74,7 @@ public class Order {
             Invoice invoice = orders.get(i).getCommandInvoice();
             System.out.println("Invoice id: " + invoice.getId() + "\n\nCustomer name: " + invoice.getInvoiceCustomer().getName() + "\n");
             for (int j = 0; j < invoice.getInvoiceProducts().length; j++) {
-                System.out.println("Product id: " + invoice.getInvoiceProducts()[i].getId() + "\nProducer: " + invoice.getInvoiceProducts()[i].getProducer() + "\nProduct name: " + invoice.getInvoiceProducts()[i].getName() + "\nProduct flavour: " + invoice.getInvoiceProducts()[i].getFlavour() + "\nWeight: " + invoice.getInvoiceProducts()[i].getWeight() + " kg\nPrice: " + invoice.getInvoiceProducts()[i].getPrice() + " lei" + "\n");
+                System.out.println("Producer: " + invoice.getInvoiceProducts()[i].getProducer() + "\nProduct name: " + invoice.getInvoiceProducts()[i].getName() + "\nProduct flavour: " + invoice.getInvoiceProducts()[i].getFlavour() + "\nWeight: " + invoice.getInvoiceProducts()[i].getWeight() + " kg\nPrice: " + invoice.getInvoiceProducts()[i].getPrice() + " lei" + "\n");
             }
             System.out.println("Courier name: " + orders.get(i).getCommandCourier().getName());
             System.out.println("Courier phone number: " + orders.get(i).getCommandCourier().getPhoneNumber() + "\n");
