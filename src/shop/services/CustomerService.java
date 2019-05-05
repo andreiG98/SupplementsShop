@@ -10,11 +10,6 @@ import java.util.Scanner;
 
 public class CustomerService {
     private CustomerRepository customerRepository = RepositoryConfiguration.getInstance().getCustomerRepository();
-    private CsvService csvService = new CsvService();
-
-    public CustomerService() {
-        System.out.println("Creating Customer Service");
-    }
 
     private ArrayList<Customer> getCustomersByASpecificPattern (String partialName) {
         ArrayList<Customer> allCustomers = customerRepository.getCustomers();
@@ -98,6 +93,8 @@ public class CustomerService {
                             do {
                                 choiceAddCustomer = scanner.nextLine();
                                 if (choiceAddCustomer.equals("y") || choiceAddCustomer.equals("Y")) {
+                                    action = "Add customer";
+                                    CsvService.writeAudit(action);
                                     AddCustomer.addCustomer();
                                     System.out.println("Added customer!");
                                 }

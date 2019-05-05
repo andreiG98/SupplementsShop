@@ -5,7 +5,6 @@ import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 
 public class CsvService {
-
     private static final String path = "D:\\JavaProjects\\SupplementsShop\\src\\shop\\configuration\\";
     private static final String fileName = "audit.csv";
     private static final SimpleDateFormat sdf = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss");
@@ -16,9 +15,6 @@ public class CsvService {
 
             writer.write(action + ' ');
             writer.write(String.valueOf(timestamp) + "\n");
-
-            System.out.println("done!");
-
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         } catch (IOException e) {
