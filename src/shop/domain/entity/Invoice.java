@@ -79,17 +79,20 @@ public class Invoice {
         }
         for (int i = 0; i < invoices.size(); i++) {
             Invoice invoice = invoices.get(i);
-            System.out.println("Invoice id: " + invoice.getId() + "\n");
-            System.out.println("Customer name: " + invoice.getInvoiceCustomer().getName() + "\n");
-            Product[] invoiceProducts = invoice.getInvoiceProducts();
-            System.out.println(invoiceProducts.length);
-            for (int j = 0; j < invoiceProducts.length; j++) {
-                System.out.println("Producer: " + invoiceProducts[i].getProducer() + "\nProduct name: " + invoiceProducts[i].getName() + "\nProduct flavour: " + invoiceProducts[i].getFlavour() + "\nWeight: " + invoiceProducts[i].getWeight() + " kg\nPrice: " + invoiceProducts[i].getPrice() + " lei" + "\n");
-            }
-            System.out.println("Pay method: " + invoice.getPayMethod());
-            System.out.println("Total value: " + invoice.getValue() + " lei");
-            System.out.println("***************************");
+            invoice.showInvoice();
         }
+    }
+
+    public void showInvoice() {
+        System.out.println("Invoice id: " + getId() + "\n");
+        System.out.println("Customer name: " + getInvoiceCustomer().getName() + "\n");
+        Product[] invoiceProducts = getInvoiceProducts();
+        for (int j = 0; j < invoiceProducts.length; j++) {
+            System.out.println("Producer: " + invoiceProducts[j].getProducer() + "\nProduct name: " + invoiceProducts[j].getName() + "\nProduct flavour: " + invoiceProducts[j].getFlavour() + "\nWeight: " + invoiceProducts[j].getWeight() + " kg\nPrice: " + invoiceProducts[j].getPrice() + " lei" + "\n");
+        }
+        System.out.println("Pay method: " + getPayMethod());
+        System.out.println("Total value: " + getValue() + " lei");
+        System.out.println("***************************");
     }
 
     @Override
