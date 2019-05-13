@@ -1,16 +1,17 @@
 package shop.domain.repository;
 
+import shop.domain.entity.Product;
 import shop.domain.entity.Vitamin;
 import shop.tool.VitaminBuilder;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class VitaminRepository {
-    private static ArrayList<Vitamin> vitamins;
+
+    private static Set<Vitamin> vitamins;
     private static File file;
 
     public VitaminRepository (String fileName) {
@@ -22,7 +23,7 @@ public class VitaminRepository {
             e.printStackTrace();
         }
         Scanner scanner = new Scanner(fileInputStream);
-        this.vitamins = new ArrayList<Vitamin>(10);
+        this.vitamins = new TreeSet<>(Comparator.comparing(Product::getName));
         while (scanner.hasNext()){
             String line = scanner.nextLine();
             String[] splitedData = line.split(", ");
@@ -44,40 +45,62 @@ public class VitaminRepository {
         }
     }
 
-    public ArrayList<Vitamin> getVitamins() {
-        return vitamins;
+    public ArrayList getVitamins() {
+        ArrayList<Vitamin> allVitamins = new ArrayList<Vitamin>();
+        Iterator<Vitamin> it = vitamins.iterator();
+        Vitamin current;
+        while(it.hasNext() ) {
+            current = it.next();
+            allVitamins.add(current);
+        }
+        return allVitamins;
     }
 
     public ArrayList<Vitamin> getVitaminsByForm (String form) {
         ArrayList<Vitamin> vitaminsByForm = new ArrayList<Vitamin>();
-        for (int i = 0; i < vitamins.size(); i++) {
-            if (vitamins.get(i).getForm().equals(form))
-                vitaminsByForm.add(vitamins.get(i));
+        Iterator<Vitamin> it = vitamins.iterator();
+        Vitamin current;
+        while(it.hasNext() ) {
+            current = it.next();
+            if (current.getForm().equals(form)) {
+                vitaminsByForm.add(current);
+            }
         }
         return vitaminsByForm;
     }
 
     public ArrayList<Vitamin> getVitaminsByType (String type) {
         ArrayList<Vitamin> vitaminsByType = new ArrayList<Vitamin>();
-        for (int i = 0; i < vitamins.size(); i++) {
-            if (vitamins.get(i).getType().equals(type))
-                vitaminsByType.add(vitamins.get(i));
+        Iterator<Vitamin> it = vitamins.iterator();
+        Vitamin current;
+        while(it.hasNext() ) {
+            current = it.next();
+            if (current.getForm().equals(type)) {
+                vitaminsByType.add(current);
+            }
         }
         return vitaminsByType;
     }
 
     public static Vitamin getVitaminById (int id) {
-        for (int i = 0; i < vitamins.size(); i++) {
-            if (vitamins.get(i).getId() == id)
-                return vitamins.get(i);
+        Iterator<Vitamin> it = vitamins.iterator();
+        Vitamin current;
+        while(it.hasNext() ) {
+            current = it.next();
+            if (current.getId() == id) {
+                return current;
+            }
         }
         return null;
     }
 
     public void listAllvitamins () {
         System.out.println("All available vitamins:\n");
-        for (int i = 0; i < vitamins.size(); i++) {
-            System.out.println("Vitamin id: " + vitamins.get(i).getId() + "\nVitamin producer: " + vitamins.get(i).getProducer() + "\nVitamin name: " + vitamins.get(i).getName() + "\nPrice: " + vitamins.get(i).getPrice() + " lei\nDiscount: " + vitamins.get(i).getDiscount() + "\nWeight: " + vitamins.get(i).getWeight() + " kg\nFlavour: " + vitamins.get(i).getFlavour() + "\nForm: " + vitamins.get(i).getForm() + "\nType: " + vitamins.get(i).getType());
+        Iterator<Vitamin> it = vitamins.iterator();
+        Vitamin current;
+        while(it.hasNext() ) {
+            current = it.next();
+            System.out.println("Vitamin id: " + current.getId() + "\nVitamin producer: " + current.getProducer() + "\nVitamin name: " + current.getName() + "\nPrice: " + current.getPrice() + " lei\nDiscount: " + current.getDiscount() + "\nWeight: " + current.getWeight() + " kg\nFlavour: " + current.getFlavour() + "\nForm: " + current.getForm() + "\nType: " + current.getType());
             System.out.println("***********************");
         }
     }

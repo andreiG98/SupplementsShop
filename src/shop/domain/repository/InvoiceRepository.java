@@ -23,7 +23,7 @@ public class InvoiceRepository {
             e.printStackTrace();
         }
         Scanner scanner = new Scanner(fileInputStream);
-        this.invoices = new ArrayList<Invoice>(10);
+        this.invoices = new ArrayList<>(10);
         while (scanner.hasNext()){
             String line = scanner.nextLine();
             String[] splitedData = line.split(", ");
@@ -49,19 +49,24 @@ public class InvoiceRepository {
     }
 
     public void addInvoice (Invoice invoice) {
-        FileOutputStream fileOutputStream = null;
+        BufferedWriter out = null;
         try {
-            fileOutputStream = new FileOutputStream(file, true);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        String newEntry = invoice.toString();
-        byte[] newEntryBytes = newEntry.getBytes();
-        invoices.add(invoice);
-        try {
-            fileOutputStream.write(newEntryBytes);
+            out = new BufferedWriter(new FileWriter(file, true));
+            String newEntry = invoice.toString();
+            invoices.add(invoice);
+            out.write(newEntry);
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if(out != null){
+                    out.close();
+                } else {
+                    System.out.println("Buffer has not been initialized!");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 

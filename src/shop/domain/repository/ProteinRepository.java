@@ -1,16 +1,20 @@
 package shop.domain.repository;
 
+import shop.domain.entity.Product;
 import shop.domain.entity.Protein;
 import shop.tool.ProteinBuilder;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 public class ProteinRepository {
-    private static ArrayList<Protein> proteins;
+
+    private static Set<Protein> proteins;
+
+
+    //private static ArrayList<Protein>Protein proteins;
     private static File file;
 
     public ProteinRepository (String fileName) {
@@ -22,7 +26,7 @@ public class ProteinRepository {
             e.printStackTrace();
         }
         Scanner scanner = new Scanner(fileInputStream);
-        this.proteins = new ArrayList<Protein>(10);
+        this.proteins = new TreeSet<>(Comparator.comparing(Product::getName));
         while (scanner.hasNext()){
             String line = scanner.nextLine();
             String[] splitedData = line.split(", ");
@@ -45,9 +49,12 @@ public class ProteinRepository {
     }
 
     public static Protein getProteinById (int id) {
-        for (int i = 0; i < proteins.size(); i++) {
-            if (proteins.get(i).getId() == id) {
-                return proteins.get(i);
+        Iterator<Protein> it = proteins.iterator();
+        Protein current;
+        while(it.hasNext() ) {
+            current = it.next();
+            if (current.getId() == id) {
+                return current;
             }
         }
         return null;
@@ -55,26 +62,37 @@ public class ProteinRepository {
 
     public ArrayList<Protein> getProteinByConcentration (double concentration) {
         ArrayList<Protein> proteinsByConcentration = new ArrayList<Protein>();
-        for (int i = 0; i < proteins.size(); i++) {
-            if (proteins.get(i).getConcentration() == concentration)
-                proteinsByConcentration.add(proteins.get(i));
+        Iterator<Protein> it = proteins.iterator();
+        Protein current;
+        while(it.hasNext() ) {
+            current = it.next();
+            if (current.getConcentration() == concentration) {
+                proteinsByConcentration.add(current);
+            }
         }
         return proteinsByConcentration;
     }
 
     public ArrayList<Protein> getProteinByType (String type) {
         ArrayList<Protein> proteinsByType = new ArrayList<Protein>();
-        for (int i = 0; i < proteins.size(); i++) {
-            if (proteins.get(i).getType().equals(type))
-                proteinsByType.add(proteins.get(i));
+        Iterator<Protein> it = proteins.iterator();
+        Protein current;
+        while(it.hasNext() ) {
+            current = it.next();
+            if (current.getType().equals(type)) {
+                proteinsByType.add(current);
+            }
         }
         return proteinsByType;
     }
 
     public void listAllProteins () {
         System.out.println("All available proteins:\n");
-        for (int i = 0; i < proteins.size(); i++) {
-            System.out.println("Protein id: " + proteins.get(i).getId() + "\nProtein producer: " + proteins.get(i).getProducer() + "\nProtein name: " + proteins.get(i).getName() + "\nPrice: " + proteins.get(i).getPrice() + " lei\nDiscount " + proteins.get(i).getDiscount() + "\nWeight: " + proteins.get(i).getWeight() + " kg\nFlavour: " + proteins.get(i).getFlavour() + "\nConcentration: " + proteins.get(i).getConcentration() + "\nType: " + proteins.get(i).getType());
+        Iterator<Protein> it = proteins.iterator();
+        Protein current;
+        while(it.hasNext() ) {
+            current = it.next();
+            System.out.println("Protein id: " + current.getId() + "\nProtein producer: " + current.getProducer() + "\nProtein name: " + current.getName() + "\nPrice: " + current.getPrice() + " lei\nDiscount " + current.getDiscount() + "\nWeight: " + current.getWeight() + " kg\nFlavour: " + current.getFlavour() + "\nConcentration: " + current.getConcentration() + "\nType: " + current.getType());
             System.out.println("***********************");
         }
     }

@@ -39,21 +39,29 @@ public class CustomerRepository {
     }
 
     public static void addCustomer (Customer newCustomer) {
-        FileOutputStream fileOutputStream = null;
+
+        BufferedWriter out = null;
         try {
-            fileOutputStream = new FileOutputStream(file, true);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        String newEntry = "\n";
-        newEntry += newCustomer.toString();
-        byte[] newEntryBytes = newEntry.getBytes();
-        customers.add(newCustomer);
-        try {
-            fileOutputStream.write(newEntryBytes);
+            out = new BufferedWriter(new FileWriter(file, true));
+            String newEntry = "\n";
+            newEntry += newCustomer.toString();
+            customers.add(newCustomer);
+            out.write(newEntry);
+            System.out.println("Customer added succesfully!");
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if(out != null){
+                    out.close();
+                } else {
+                    System.out.println("Buffer has not been initialized!");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+
     }
 
     public static Customer getCustomerById (int id) {

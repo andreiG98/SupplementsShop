@@ -49,7 +49,7 @@ public class AddCustomer {
         do {
             System.out.println("Sector: (1-6)");
             sector = scanner.nextInt();
-        } while(sector <= 1 || sector >= 6);
+        } while(sector < 1 || sector > 6);
         address = numberOfStreet + ' ' + street + ' ' + Integer.toString(sector);
         Customer newCustomer =
                 new CustomerBuilder()

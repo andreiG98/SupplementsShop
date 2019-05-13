@@ -18,6 +18,7 @@ public class Run {
 //        customerService.addCustomer(false);
 //        customerService.getCustomerRepository().listAllCustomers();
         int choice;
+        String choiceString;
         Customer loggedCustomer = null;
         while(true) {
             Scanner scanner = new Scanner(System.in);
@@ -35,8 +36,14 @@ public class Run {
             System.out.println("10 - List proteins after a certain concentration");
             System.out.println("11 - Exit");
 
-            choice = scanner.nextInt();
-            scanner.nextLine();
+            choiceString = scanner.nextLine();
+            try {
+                choice = Integer.parseInt(choiceString);
+            }
+            catch (NumberFormatException e)
+            {
+                choice = -1;
+            }
             while (choice < 0 || choice > 11) {
                 System.out.println("Invalid choice!");
                 choice = scanner.nextInt();

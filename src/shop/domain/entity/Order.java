@@ -72,7 +72,7 @@ public class Order {
         for (int i = 0; i < orders.size(); i++) {
             System.out.println("Order id: " + orders.get(i).getId() + "\n");
             Invoice invoice = orders.get(i).getCommandInvoice();
-            System.out.println("Courier name: " + orders.get(i).getCommandCourier().getName() + "\n");
+            System.out.println("Courier name: " + orders.get(i).getCommandCourier().getName());
             System.out.println("Courier phone number: " + orders.get(i).getCommandCourier().getPhoneNumber() + "\n");
             invoice.showInvoice();
         }

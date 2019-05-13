@@ -56,23 +56,31 @@ public class OrderRepository {
     }
 
     public void addOrder(Order order, Customer customer) {
-        FileOutputStream fileOutputStream = null;
+
+        BufferedWriter out = null;
         try {
-            fileOutputStream = new FileOutputStream(file, true);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        String newEntry = order.getCommandCustomer().getId() + ", " + order.getCommandInvoice().getId() + ", " + order.getCommandCourier().getDrivingLicenseNo() + "\n";
-        byte[] newEntryBytes = newEntry.getBytes();
-        ArrayList<Order> ordersOfCustomer = orders.get(customer.getId());
-        if (ordersOfCustomer == null)
-            ordersOfCustomer = new ArrayList<Order>();
-        ordersOfCustomer.add(order);
-        orders.put(customer.getId(), ordersOfCustomer);
-        try {
-            fileOutputStream.write(newEntryBytes);
+            out = new BufferedWriter(new FileWriter(file, true));
+            String newEntry = order.getCommandCustomer().getId() + ", " + order.getCommandInvoice().getId() + ", " + order.getCommandCourier().getDrivingLicenseNo() + "\n";
+            byte[] newEntryBytes = newEntry.getBytes();
+            ArrayList<Order> ordersOfCustomer = orders.get(customer.getId());
+            if (ordersOfCustomer == null)
+                ordersOfCustomer = new ArrayList<Order>();
+            ordersOfCustomer.add(order);
+            orders.put(customer.getId(), ordersOfCustomer);
+            out.write(newEntry);
+            System.out.println("Customer added succesfully!");
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if(out != null){
+                    out.close();
+                } else {
+                    System.out.println("Buffer has not been initialized!");
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
