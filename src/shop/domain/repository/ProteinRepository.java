@@ -12,9 +12,6 @@ import java.util.*;
 public class ProteinRepository {
 
     private static Set<Protein> proteins;
-
-
-    //private static ArrayList<Protein>Protein proteins;
     private static File file;
 
     public ProteinRepository (String fileName) {

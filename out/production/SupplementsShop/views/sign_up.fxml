@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <content>
+      <VBox prefHeight="500.0" prefWidth="550.0">
+         <children>
+            <Pane prefHeight="70.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="52.0" layoutY="6.0" text="First name" />
+                  <TextField fx:id="firstNameInput" layoutX="52.0" layoutY="32.0" />
+               </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Pane>
+            <Pane prefHeight="70.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="52.0" layoutY="6.0" text="Last name" />
+                  <TextField fx:id="lastNameInput" layoutX="52.0" layoutY="32.0" />
+               </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Pane>
+            <Pane prefHeight="70.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="52.0" layoutY="6.0" text="CNP" />
+                  <TextField fx:id="cnpInput" layoutX="52.0" layoutY="32.0" />
+               </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Pane>
+            <Pane prefHeight="70.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="52.0" layoutY="6.0" text="Phone number" />
+                  <TextField fx:id="phoneNumberInput" layoutX="52.0" layoutY="32.0" />
+               </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Pane>
+            <Pane prefHeight="70.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="52.0" layoutY="6.0" text="Email" />
+                  <TextField fx:id="emailInput" layoutX="52.0" layoutY="32.0" />
+               </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Pane>
+            <Pane prefHeight="70.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="52.0" layoutY="6.0" text="Password" />
+                  <PasswordField fx:id="passInput" layoutX="52.0" layoutY="32.0" />
+               </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Pane>
+            <Pane prefHeight="70.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="52.0" layoutY="6.0" text="Street" />
+                  <TextField fx:id="streetInput" layoutX="52.0" layoutY="32.0" />
+               </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Pane>
+            <Pane prefHeight="70.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="52.0" layoutY="6.0" text="No" />
+                  <TextField fx:id="noStreetInput" layoutX="52.0" layoutY="32.0" />
+               </children>
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </Pane>
+            <Pane prefHeight="70.0" prefWidth="200.0">
+               <children>
+                  <Label layoutX="52.0" layoutY="6.0" text="Sector" />
+                  <ChoiceBox fx:id="sectorInput" layoutX="52.0" layoutY="32.0" prefWidth="150.0" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="15.0" top="5.0" />
+               </VBox.margin>
+            </Pane>
+         </children>
+      </VBox>
+   </content>
+</ScrollPane>
