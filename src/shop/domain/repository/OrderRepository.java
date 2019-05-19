@@ -1,48 +1,50 @@
 package shop.domain.repository;
 
+import shop.configuration.ConnectionFactory;
 import shop.domain.entity.Customer;
 import shop.domain.entity.Order;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Scanner;
 
 public class OrderRepository {
     private HashMap<Integer, ArrayList<Order>> orders;
     private File file;
+    private static final String GET_CUSTOMER_BY_ID = "SELECT * FROM customers WHERE id=?";
+    private static final String GET_ALL_ORDERS = "SELECT * FROM orders";
+    private static final String CREATE_NEW_ORDER = "INSERT INTO orders (id, client_id, invoice_id, driving_license_courier) VALUES (?,?,?,?)";
 
     public OrderRepository(String fileName) {
         file = new File(fileName);
-        if (!file.exists()) {
-            try {
-                file.createNewFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        FileInputStream fileInputStream = null;
-        try {
-            fileInputStream = new FileInputStream(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        Scanner scanner = new Scanner(fileInputStream);
         orders = new HashMap<>();
-        while (scanner.hasNext()) {
-            String line = scanner.nextLine();
-            String[] splitedData = line.split(", ");
-            int idCustomer = Integer.parseInt(splitedData[0]);
-            Order newEntry = new Order(CustomerRepository.getCustomerById(idCustomer), InvoiceRepository.getInvoiceById(Integer.parseInt(splitedData[1])), CourierRepository.getCourierByDrivingLicense(Integer.parseInt(splitedData[2])));
-            ArrayList<Order> ordersByCustomer = orders.get(idCustomer);
-            if (ordersByCustomer != null) {
-                System.out.println("o comanda");
-                ordersByCustomer.add(newEntry);
-            } else {
-                ordersByCustomer = new ArrayList<Order>(10);
-                ordersByCustomer.add(newEntry);
+
+        try (Connection connection = ConnectionFactory.getConnection()) {
+            PreparedStatement stmt = connection.prepareStatement(GET_ALL_ORDERS);
+            ResultSet resultSet = stmt.executeQuery();
+            while (resultSet.next())
+            {
+                int idCustomer = resultSet.getInt("client_id");
+                Order newEntry = new Order(CustomerRepository.getCustomerById(idCustomer), InvoiceRepository.getInvoiceById(resultSet.getInt("invoice_id")), CourierRepository.getCourierByDrivingLicense(resultSet.getInt("driving_licence_courier")));
+                ArrayList<Order> ordersByCustomer = orders.get(idCustomer);
+                if (ordersByCustomer != null) {
+                    ordersByCustomer.add(newEntry);
+                } else {
+                    ordersByCustomer = new ArrayList<Order>(10);
+                    ordersByCustomer.add(newEntry);
+                }
+                orders.put(idCustomer, ordersByCustomer);
             }
-            orders.put(idCustomer, ordersByCustomer);
+            stmt.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
     }
 
@@ -61,14 +63,12 @@ public class OrderRepository {
         try {
             out = new BufferedWriter(new FileWriter(file, true));
             String newEntry = order.getCommandCustomer().getId() + ", " + order.getCommandInvoice().getId() + ", " + order.getCommandCourier().getDrivingLicenseNo() + "\n";
-            byte[] newEntryBytes = newEntry.getBytes();
             ArrayList<Order> ordersOfCustomer = orders.get(customer.getId());
             if (ordersOfCustomer == null)
                 ordersOfCustomer = new ArrayList<Order>();
             ordersOfCustomer.add(order);
             orders.put(customer.getId(), ordersOfCustomer);
             out.write(newEntry);
-            System.out.println("Customer added succesfully!");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -81,6 +81,17 @@ public class OrderRepository {
             } catch (IOException e) {
                 e.printStackTrace();
             }
+        }
+
+        try (Connection connection = ConnectionFactory.getConnection()) {
+            PreparedStatement stmt = connection.prepareStatement(CREATE_NEW_ORDER);
+            stmt.setInt(1, order.getId());
+            stmt.setInt(2, order.getCommandCustomer().getId());
+            stmt.setInt(3, order.getCommandInvoice().getId());
+            stmt.setInt(4, order.getCommandCourier().getDrivingLicenseNo());
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
     }
 

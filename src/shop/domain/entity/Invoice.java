@@ -37,16 +37,18 @@ public class Invoice {
     }
 
     public void setInvoiceCustomer(Customer invoiceCustomer) {
-        this.invoiceCustomer =
-                new CustomerBuilder()
-                        .withName(invoiceCustomer.getName())
-                        .withCNP(invoiceCustomer.getCNP())
-                        .withPhoneNumber(invoiceCustomer.getPhoneNumber())
-                        .withEmail(invoiceCustomer.getEmail())
-                        .withPassword(invoiceCustomer.getPassword())
-                        .withAddress(invoiceCustomer.getAddress())
-                        .build();
-        this.invoiceCustomer.setId(invoiceCustomer.getId());
+        if (invoiceCustomer != null) {
+            this.invoiceCustomer =
+                    new CustomerBuilder()
+                            .withName(invoiceCustomer.getName())
+                            .withCNP(invoiceCustomer.getCNP())
+                            .withPhoneNumber(invoiceCustomer.getPhoneNumber())
+                            .withEmail(invoiceCustomer.getEmail())
+                            .withPassword(invoiceCustomer.getPassword())
+                            .withAddress(invoiceCustomer.getAddress())
+                            .build();
+            this.invoiceCustomer.setId(invoiceCustomer.getId());
+        }
     }
 
     public void setInvoiceProducts(Product[] invoiceProducts) {

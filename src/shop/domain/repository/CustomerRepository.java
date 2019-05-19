@@ -4,72 +4,47 @@ import shop.configuration.ConnectionFactory;
 import shop.domain.entity.Customer;
 import shop.tool.CustomerBuilder;
 
-import java.io.*;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class CustomerRepository {
     static private ArrayList<Customer> customers;
     private static File file;
     private static final String GET_CUSTOMER_BY_ID = "SELECT * FROM customers WHERE id=?";
-    private static final String GET_ALL_USERS = "SELECT * FROM customers";
+    private static final String GET_ALL_CUSTOMERS = "SELECT * FROM customers";
     private static final String CREATE_NEW_CUSTOMER = "INSERT INTO customers (id, name, cnp, phone_number, email, password, address) VALUES (?,?,?,?,?,?,?)";
 
     public CustomerRepository (String fileName) {
         file = new File(fileName);
-        FileInputStream fileInputStream = null;
-        try {
-            fileInputStream = new FileInputStream(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        Scanner scanner = new Scanner(fileInputStream);
         this.customers = new ArrayList<Customer>(10);
-        while (scanner.hasNext()){
-            String line = scanner.nextLine();
-            String[] splitedData = line.split(", ");
-            Customer newEntry =
-                    new CustomerBuilder()
-                            .withId()
-                            .withName(splitedData[0])
-                            .withCNP(splitedData[1])
-                            .withPhoneNumber(splitedData[2])
-                            .withEmail(splitedData[3])
-                            .withPassword(splitedData[4])
-                            .withAddress(splitedData[5])
-                            .build();
-            customers.add(newEntry);
+        try (Connection connection = ConnectionFactory.getConnection()) {
+            PreparedStatement stmt = connection.prepareStatement(GET_ALL_CUSTOMERS);
+            ResultSet resultSet = stmt.executeQuery();
+            while (resultSet.next())
+            {
+                Customer newEntry =
+                        new CustomerBuilder()
+                                .withId()
+                                .withName(resultSet.getString("name"))
+                                .withCNP(resultSet.getString("cnp"))
+                                .withPhoneNumber(resultSet.getString("phone_number"))
+                                .withEmail(resultSet.getString("email"))
+                                .withPassword(resultSet.getString("password"))
+                                .withAddress(resultSet.getString("address"))
+                                .build();
+                customers.add(newEntry);
+            }
+            stmt.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
-    }
-
-    public CustomerRepository () {
-//        file = new File(fileName);
-//        FileInputStream fileInputStream = null;
-//        try {
-//            fileInputStream = new FileInputStream(file);
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        Scanner scanner = new Scanner(fileInputStream);
-//        this.customers = new ArrayList<Customer>(10);
-//        while (scanner.hasNext()){
-//            String line = scanner.nextLine();
-//            String[] splitedData = line.split(", ");
-//            Customer newEntry =
-//                    new CustomerBuilder()
-//                            .withId()
-//                            .withName(splitedData[0])
-//                            .withCNP(splitedData[1])
-//                            .withPhoneNumber(splitedData[2])
-//                            .withEmail(splitedData[3])
-//                            .withPassword(splitedData[4])
-//                            .withAddress(splitedData[5])
-//                            .build();
-//            customers.add(newEntry);
-//        }
     }
 
     public static void addCustomer (Customer newCustomer) {
@@ -108,19 +83,41 @@ public class CustomerRepository {
             stmt.setString(7, newCustomer.getAddress());
             stmt.executeUpdate();
         } catch (SQLException ex) {
-            //TODO
             ex.printStackTrace();
         }
 
     }
 
     public static Customer getCustomerById (int id) {
-        for (int i = 0; i < customers.size(); i++) {
-            if (customers.get(i).getId() == id) {
-                return customers.get(i);
+//        for (int i = 0; i < customers.size(); i++) {
+//            if (customers.get(i).getId() == id) {
+//                return customers.get(i);
+//            }
+//        }
+//        return null;
+        try (Connection connection = ConnectionFactory.getConnection()) {
+            PreparedStatement stmt = connection.prepareStatement(GET_CUSTOMER_BY_ID);
+            stmt.setInt(1, id);
+            ResultSet resultSet = stmt.executeQuery();
+            if (resultSet != null) {
+                Customer customerById =
+                        new CustomerBuilder()
+                                .withName(resultSet.getString("name"))
+                                .withCNP(resultSet.getString("cnp"))
+                                .withPhoneNumber(resultSet.getString("phone_number"))
+                                .withEmail(resultSet.getString("email"))
+                                .withPassword(resultSet.getString("password"))
+                                .withAddress(resultSet.getString("address"))
+                                .build();
+                customerById.setId(id);
+                return customerById;
             }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
-        return null;
+        finally {
+            return null;
+        }
     }
 
     public Customer getCustomerByCNP (String CNP) {
@@ -143,13 +140,11 @@ public class CustomerRepository {
 
     public void listAllCustomers () {
         for (int i = 0; i < customers.size(); i++) {
-            System.out.println(customers.get(i).getId() + " " + customers.get(i).getName() + " " + customers.get(i).getCNP() + " " + customers.get(i).getPhoneNumber() + " " + customers.get(i).getEmail() + " " + customers.get(i).getAddress());
+            System.out.println(customers.get(i).getId() + " " + customers.get(i).toString());
         }
     }
 
     public ArrayList<Customer> getCustomers() {
         return customers;
     }
-
-
 }

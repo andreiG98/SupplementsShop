@@ -1,38 +1,42 @@
 package shop.domain.repository;
 
+import shop.configuration.ConnectionFactory;
 import shop.domain.entity.Producer;
 import shop.tool.ProducerBuilder;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class ProducerRepository {
     private ArrayList<Producer> producers;
     private static File file;
+    private static final String GET_CUSTOMER_BY_ID = "SELECT * FROM customers WHERE id=?";
+    private static final String GET_ALL_PRODUCERS = "SELECT * FROM producers";
+    private static final String CREATE_NEW_CUSTOMER = "INSERT INTO customers (id, name, cnp, phone_number, email, password, address) VALUES (?,?,?,?,?,?,?)";
 
     public ProducerRepository (String fileName) {
         file = new File(fileName);
-        FileInputStream fileInputStream = null;
-        try {
-            fileInputStream = new FileInputStream(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        Scanner scanner = new Scanner(fileInputStream);
         this.producers = new ArrayList<Producer>(10);
-        while (scanner.hasNext()){
-            String line = scanner.nextLine();
-            String[] splitedData = line.split(", ");
-            Producer newEntry =
-                    new ProducerBuilder()
-                            .withId()
-                            .withName(splitedData[0])
-                            .withCUI(Long.parseLong(splitedData[1]))
-                            .build();
-            producers.add(newEntry);
+        try (Connection connection = ConnectionFactory.getConnection()) {
+            PreparedStatement stmt = connection.prepareStatement(GET_ALL_PRODUCERS);
+            ResultSet resultSet = stmt.executeQuery();
+            while (resultSet.next())
+            {
+                Producer newEntry =
+                        new ProducerBuilder()
+                                .withId()
+                                .withName(resultSet.getString("name"))
+                                .withCUI(resultSet.getLong("cui"))
+                                .build();
+                producers.add(newEntry);
+            }
+            stmt.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
     }
 

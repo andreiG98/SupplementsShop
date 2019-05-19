@@ -1,42 +1,46 @@
 package shop.domain.repository;
 
+import shop.configuration.ConnectionFactory;
 import shop.domain.entity.Courier;
 import shop.tool.CourierBuilder;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class CourierRepository {
     private static ArrayList<Courier> couriers;
     private static File file;
+    private static final String GET_CUSTOMER_BY_ID = "SELECT * FROM customers WHERE id=?";
+    private static final String GET_ALL_COURIERS = "SELECT * FROM couriers";
+    private static final String CREATE_NEW_CUSTOMER = "INSERT INTO customers (id, name, cnp, phone_number, email, password, address) VALUES (?,?,?,?,?,?,?)";
 
     public CourierRepository (String fileName) {
         file = new File(fileName);
-        FileInputStream fileInputStream = null;
-        try {
-            fileInputStream = new FileInputStream(file);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        Scanner scanner = new Scanner(fileInputStream);
         this.couriers = new ArrayList<Courier>(10);
 
-        while (scanner.hasNext()){
-            String line = scanner.nextLine();
-            String[] splitedData = line.split(", ");
-            Courier newEntry =
-                    new CourierBuilder()
-                            .withId()
-                            .withName(splitedData[0])
-                            .withCNP(splitedData[1])
-                            .withPhoneNumber(splitedData[2])
-                            .withWorkZone(splitedData[3])
-                            .withDrivingLicenseNo(Integer.parseInt(splitedData[4]))
-                            .build();
-            couriers.add(newEntry);
+        try (Connection connection = ConnectionFactory.getConnection()) {
+            PreparedStatement stmt = connection.prepareStatement(GET_ALL_COURIERS);
+            ResultSet resultSet = stmt.executeQuery();
+            while (resultSet.next())
+            {
+                Courier newEntry =
+                        new CourierBuilder()
+                                .withId()
+                                .withName(resultSet.getString("name"))
+                                .withCNP(resultSet.getString("cnp"))
+                                .withPhoneNumber(resultSet.getString("phone_number"))
+                                .withWorkZone(resultSet.getString("workzone"))
+                                .withDrivingLicenseNo(resultSet.getInt("driving_license"))
+                                .build();
+                couriers.add(newEntry);
+            }
+            stmt.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
     }
 

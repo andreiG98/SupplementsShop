@@ -14,34 +14,36 @@ public class Order {
     private static int currentOrder;
 
     public Order(Customer commandCustomer, Invoice commandInvoice, Courier commandCourier) {
-        this.id = ++currentOrder;
-        this.commandCustomer =
-                new CustomerBuilder()
-                        .withName(commandCustomer.getName())
-                        .withCNP(commandCustomer.getCNP())
-                        .withPhoneNumber(commandCustomer.getPhoneNumber())
-                        .withEmail(commandCustomer.getEmail())
-                        .withPassword(commandCustomer.getPassword())
-                        .withAddress(commandCustomer.getAddress())
-                        .build();
-        this.commandCustomer.setId(commandCustomer.getId());
-        this.commandCourier =
-                new CourierBuilder()
-                        .withName(commandCourier.getName())
-                        .withCNP(commandCourier.getCNP())
-                        .withPhoneNumber(commandCourier.getPhoneNumber())
-                        .withWorkZone(commandCourier.getWorkZone())
-                        .withDrivingLicenseNo(commandCourier.getDrivingLicenseNo())
-                        .build();
-        this.commandCourier.setId(commandCourier.getId());
-        this.commandInvoice =
-                new InvoiceBuilder()
-                        .withValue(commandInvoice.getValue())
-                        .withCustomer(commandInvoice.getInvoiceCustomer())
-                        .withInvoiceProducts(commandInvoice.getInvoiceProducts())
-                        .withPayMethod(commandInvoice.getPayMethod())
-                        .build();
-        this.commandInvoice.setId(commandInvoice.getId());
+        if (commandCustomer != null) {
+            this.id = ++currentOrder;
+            this.commandCustomer =
+                    new CustomerBuilder()
+                            .withName(commandCustomer.getName())
+                            .withCNP(commandCustomer.getCNP())
+                            .withPhoneNumber(commandCustomer.getPhoneNumber())
+                            .withEmail(commandCustomer.getEmail())
+                            .withPassword(commandCustomer.getPassword())
+                            .withAddress(commandCustomer.getAddress())
+                            .build();
+            this.commandCustomer.setId(commandCustomer.getId());
+            this.commandCourier =
+                    new CourierBuilder()
+                            .withName(commandCourier.getName())
+                            .withCNP(commandCourier.getCNP())
+                            .withPhoneNumber(commandCourier.getPhoneNumber())
+                            .withWorkZone(commandCourier.getWorkZone())
+                            .withDrivingLicenseNo(commandCourier.getDrivingLicenseNo())
+                            .build();
+            this.commandCourier.setId(commandCourier.getId());
+            this.commandInvoice =
+                    new InvoiceBuilder()
+                            .withValue(commandInvoice.getValue())
+                            .withCustomer(commandInvoice.getInvoiceCustomer())
+                            .withInvoiceProducts(commandInvoice.getInvoiceProducts())
+                            .withPayMethod(commandInvoice.getPayMethod())
+                            .build();
+            this.commandInvoice.setId(commandInvoice.getId());
+        }
     }
 
     public int getId() {

@@ -21,22 +21,22 @@ public class DatabaseSetup {
                             "id number(4) PRIMARY KEY," +
                             "name varchar2(200)," +
                             "cnp varchar2(14)," +
-                            "phone_number varchar2(11)," +
+                            "phone_number varchar2(20)," +
                             "email  varchar2(200)," +
                             "password varchar2(200)," +
                             "address varchar2(200)" +
                             ")");
 
             stmt.execute("drop table if exists invoices");
-            stmt.execute(
-                    "create table " +
-                            "invoices (" +
-                            "id number(4) PRIMARY KEY," +
-                            "value number(50)," +
-                            "payment_method varchar2(200)," +
-                            "client_id number(4) REFERENCES customers (id)," +
-                            "products varchar2(200)" +
-                            ")");
+//            stmt.execute(
+//                    "create table " +
+//                            "invoices (" +
+//                            "id number(4) PRIMARY KEY," +
+//                            "value number(50)," +
+//                            "payment_method varchar2(200)," +
+//                            "client_id number(4) REFERENCES customers (id)," +
+//                            "products varchar2(200)" +
+//                            ")");
 
             stmt.execute("drop table if exists couriers");
             stmt.execute(
@@ -45,7 +45,7 @@ public class DatabaseSetup {
                             "id number(4) PRIMARY KEY," +
                             "name varchar2(200)," +
                             "cnp varchar2(14)," +
-                            "phone_number varchar2(11)," +
+                            "phone_number varchar2(20)," +
                             "workzone  varchar2(200)," +
                             "driving_license number(20)" +
                             ")");
@@ -56,7 +56,7 @@ public class DatabaseSetup {
                             "orders (" +
                             "id number(4) PRIMARY KEY," +
                             "client_id number(4) REFERENCES customers (id)," +
-                            "invoice_id number(4) REFERENCES invoices (id)," +
+                            "invoice_id number(4)," +
                             "driving_license_courier number(14) REFERENCES couriers (driving_license)" +
                             ")");
 
@@ -66,27 +66,39 @@ public class DatabaseSetup {
                             "producers (" +
                             "id number(4) PRIMARY KEY," +
                             "name varchar2(200)," +
-                            "cnp number(14)," +
-                            "phone_number number(11)," +
-                            "email  varchar2(200)," +
-                            "password varchar2(200)," +
-                            "address varchar2(200)" +
+                            "cui varchar2(200)," +
                             ")");
 
-            stmt.execute("drop table if exists products");
-            stmt.execute(
-                    "create table " +
-                            "products (" +
-                            "id number(4) PRIMARY KEY," +
-                            "name varchar2(200)," +
-                            "cnp number(14)," +
-                            "phone_number number(11)," +
-                            "email  varchar2(200)," +
-                            "password varchar2(200)," +
-                            "address varchar2(200)" +
-                            ")");
-            //stmt.execute("drop sequence if exists user_id_seq");
-            //stmt.execute("create sequence user_id_seq");
+            stmt.execute("drop table if exists proteins");
+//            stmt.execute(
+//                    "create table " +
+//                            "proteins (" +
+//                            "id number(4) PRIMARY KEY," +
+//                            "name varchar2(200)," +
+//                            "price double(4)," +
+//                            "discount double(4)," +
+//                            "weight double(4)," +
+//                            "flavour varchar2(200)," +
+//                            "concentration double(4)," +
+//                            "type varchar2(200)," +
+//                            "producer_id number(14) REFERENCES producers (id)" +
+//                            ")");
+
+            stmt.execute("drop table if exists vitamins");
+//            stmt.execute(
+//                    "create table " +
+//                            "vitamins (" +
+//                            "id number(4) PRIMARY KEY," +
+//                            "name varchar2(200)," +
+//                            "price double(4)," +
+//                            "discount double(4)," +
+//                            "weight double(4)," +
+//                            "flavour varchar2(200)," +
+//                            "form varchar(200)," +
+//                            "type varchar2(200)," +
+//                            "producer_id number(14) REFERENCES producers (id)" +
+//                            ")");
+
         } catch (SQLException ex) {
             System.out.println("Could not finish database setup!");
             ex.printStackTrace();
