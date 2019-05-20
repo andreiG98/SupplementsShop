@@ -14,9 +14,7 @@ import java.util.ArrayList;
 public class ProducerRepository {
     private ArrayList<Producer> producers;
     private static File file;
-    private static final String GET_CUSTOMER_BY_ID = "SELECT * FROM customers WHERE id=?";
     private static final String GET_ALL_PRODUCERS = "SELECT * FROM producers";
-    private static final String CREATE_NEW_CUSTOMER = "INSERT INTO customers (id, name, cnp, phone_number, email, password, address) VALUES (?,?,?,?,?,?,?)";
 
     public ProducerRepository (String fileName) {
         file = new File(fileName);
@@ -70,6 +68,7 @@ public class ProducerRepository {
     public void listtAllProducers () {
         for (int i = 0; i < producers.size(); i++) {
             System.out.println("Producer id: " + producers.get(i).getId() + "\nProducer name: " + producers.get(i).getName() + "\nProducer CUI: " + producers.get(i).getCUI());
+            System.out.println("***************************");
         }
     }
 

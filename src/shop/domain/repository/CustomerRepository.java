@@ -52,8 +52,7 @@ public class CustomerRepository {
         BufferedWriter out = null;
         try {
             out = new BufferedWriter(new FileWriter(file, true));
-            String newEntry = "\n";
-            newEntry += newCustomer.toString();
+            String newEntry = newCustomer.toString();
             customers.add(newCustomer);
             out.write(newEntry);
             System.out.println("Customer added succesfully!");
@@ -99,6 +98,7 @@ public class CustomerRepository {
             PreparedStatement stmt = connection.prepareStatement(GET_CUSTOMER_BY_ID);
             stmt.setInt(1, id);
             ResultSet resultSet = stmt.executeQuery();
+            resultSet.next();
             if (resultSet != null) {
                 Customer customerById =
                         new CustomerBuilder()
@@ -115,9 +115,7 @@ public class CustomerRepository {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        finally {
-            return null;
-        }
+        return null;
     }
 
     public Customer getCustomerByCNP (String CNP) {

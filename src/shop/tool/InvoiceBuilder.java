@@ -1,6 +1,5 @@
 package shop.tool;
 
-import shop.domain.entity.Customer;
 import shop.domain.entity.Invoice;
 import shop.domain.entity.Product;
 
@@ -19,8 +18,8 @@ public class InvoiceBuilder {
         return this;
     }
 
-    public InvoiceBuilder withCustomer (Customer customer) {
-        target.setInvoiceCustomer(customer);
+    public InvoiceBuilder withCustomer (int customerId) {
+        target.setInvoiceCustomer(customerId);
         return this;
     }
 

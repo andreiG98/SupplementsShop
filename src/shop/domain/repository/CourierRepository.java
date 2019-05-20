@@ -14,9 +14,8 @@ import java.util.ArrayList;
 public class CourierRepository {
     private static ArrayList<Courier> couriers;
     private static File file;
-    private static final String GET_CUSTOMER_BY_ID = "SELECT * FROM customers WHERE id=?";
+    private static final String GET_COURIER_BY_DRIVING_LICENSE = "SELECT * FROM couriers WHERE driving_license=?";
     private static final String GET_ALL_COURIERS = "SELECT * FROM couriers";
-    private static final String CREATE_NEW_CUSTOMER = "INSERT INTO customers (id, name, cnp, phone_number, email, password, address) VALUES (?,?,?,?,?,?,?)";
 
     public CourierRepository (String fileName) {
         file = new File(fileName);
@@ -45,10 +44,32 @@ public class CourierRepository {
     }
 
     public static Courier getCourierByDrivingLicense (int drivingLicense) {
-        for (int i = 0; i < couriers.size(); i++) {
-            if (couriers.get(i).getDrivingLicenseNo() == drivingLicense) {
-                return couriers.get(i);
+//        for (int i = 0; i < couriers.size(); i++) {
+//            if (couriers.get(i).getDrivingLicenseNo() == drivingLicense) {
+//                return couriers.get(i);
+//            }
+//        }
+//        return null;
+
+        try (Connection connection = ConnectionFactory.getConnection()) {
+            PreparedStatement stmt = connection.prepareStatement(GET_COURIER_BY_DRIVING_LICENSE);
+            stmt.setInt(1, drivingLicense);
+            ResultSet resultSet = stmt.executeQuery();
+            resultSet.next();
+            if (resultSet != null) {
+                Courier courierByDL =
+                        new CourierBuilder()
+                                .withName(resultSet.getString("name"))
+                                .withCNP(resultSet.getString("cnp"))
+                                .withPhoneNumber(resultSet.getString("phone_number"))
+                                .withWorkZone(resultSet.getString("workzone"))
+                                .withDrivingLicenseNo(resultSet.getInt("driving_license"))
+                                .build();
+                courierByDL.setId(resultSet.getInt("id"));
+                return courierByDL;
             }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
         return null;
     }

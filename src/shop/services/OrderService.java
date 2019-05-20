@@ -4,6 +4,7 @@ import shop.configuration.RepositoryConfiguration;
 import shop.domain.entity.*;
 import shop.domain.repository.*;
 import shop.tool.InvoiceBuilder;
+import shop.tool.OrderBuilder;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -152,7 +153,7 @@ public class OrderService {
         Invoice invoice =
                 new InvoiceBuilder()
                         .withId()
-                        .withCustomer(customer)
+                        .withCustomer(customer.getId())
                         .withValue(totalCartValue)
                         .withPayMethod(payMethod)
                         .withInvoiceProducts(invoiceProducts)
@@ -161,7 +162,13 @@ public class OrderService {
         totalCartValue = 0;
         String commandZone = customer.getAddress().substring(customer.getAddress().length() - 1);
         Courier courier = courierRepository.getCouriersByWorkZone("Sector " + commandZone).get(random.nextInt(courierRepository.getCouriersByWorkZone("Sector " + commandZone).size()));
-        Order order = new Order(customer, invoice, courier);
+        Order order =
+                new OrderBuilder()
+                    .withId()
+                    .withCustomer(customer.getId())
+                    .withInvoice(invoice.getId())
+                    .withCourier(courier.getDrivingLicenseNo())
+                    .build();
         orderRepository.addOrder(order, customer);
         System.out.println("Thank you for order!");
     }

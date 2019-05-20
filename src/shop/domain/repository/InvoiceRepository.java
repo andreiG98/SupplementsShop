@@ -41,7 +41,7 @@ public class InvoiceRepository {
                             .withId()
                             .withValue(Double.parseDouble(splitedData[0]))
                             .withPayMethod(splitedData[1])
-                            .withCustomer(CustomerRepository.getCustomerById(Integer.parseInt(splitedData[2])))
+                            .withCustomer(Integer.parseInt(splitedData[2]))
                             .withInvoiceProducts(invoiceProductsArray)
                             .build();
             invoices.add(newEntry);
@@ -82,7 +82,7 @@ public class InvoiceRepository {
     public ArrayList<Invoice> getInvoicesByClient (Customer customer) {
         ArrayList<Invoice> invoicesByClient = new ArrayList<Invoice>();
         for (int i = 0; i < invoices.size(); i++) {
-            if (invoices.get(i).getInvoiceCustomer().getEmail().equals(customer.getEmail())) {
+            if (CustomerRepository.getCustomerById(invoices.get(i).getInvoiceCustomerId()).getEmail().equals(customer.getEmail())) {
                 invoicesByClient.add(invoices.get(i));
             }
         }

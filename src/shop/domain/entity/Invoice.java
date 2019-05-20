@@ -1,13 +1,13 @@
 package shop.domain.entity;
 
-import shop.tool.CustomerBuilder;
+import shop.domain.repository.CustomerRepository;
 
 import java.util.ArrayList;
 
 public class Invoice {
     private int id;
     private double value;
-    private Customer invoiceCustomer;
+    private int invoiceCustomerId;
     private Product[] invoiceProducts;
     private String payMethod;
     private static int currentInvoice = 0;
@@ -36,19 +36,8 @@ public class Invoice {
         this.value = value;
     }
 
-    public void setInvoiceCustomer(Customer invoiceCustomer) {
-        if (invoiceCustomer != null) {
-            this.invoiceCustomer =
-                    new CustomerBuilder()
-                            .withName(invoiceCustomer.getName())
-                            .withCNP(invoiceCustomer.getCNP())
-                            .withPhoneNumber(invoiceCustomer.getPhoneNumber())
-                            .withEmail(invoiceCustomer.getEmail())
-                            .withPassword(invoiceCustomer.getPassword())
-                            .withAddress(invoiceCustomer.getAddress())
-                            .build();
-            this.invoiceCustomer.setId(invoiceCustomer.getId());
-        }
+    public void setInvoiceCustomer(int invoiceCustomerId) {
+        this.invoiceCustomerId = invoiceCustomerId;
     }
 
     public void setInvoiceProducts(Product[] invoiceProducts) {
@@ -62,8 +51,8 @@ public class Invoice {
         this.payMethod = payMethod;
     }
 
-    public Customer getInvoiceCustomer() {
-        return invoiceCustomer;
+    public int getInvoiceCustomerId() {
+        return invoiceCustomerId;
     }
 
     public static int getCurrentInvoice() {
@@ -87,7 +76,10 @@ public class Invoice {
 
     public void showInvoice() {
         System.out.println("Invoice id: " + getId() + "\n");
-        System.out.println("Customer name: " + getInvoiceCustomer().getName() + "\n");
+        Customer customer = CustomerRepository.getCustomerById(getInvoiceCustomerId());
+        if (customer != null) {
+            System.out.println("Customer name: " + CustomerRepository.getCustomerById(getInvoiceCustomerId()).getName() + "\n");
+        }
         Product[] invoiceProducts = getInvoiceProducts();
         for (int j = 0; j < invoiceProducts.length; j++) {
             System.out.println("Producer: " + invoiceProducts[j].getProducer() + "\nProduct name: " + invoiceProducts[j].getName() + "\nProduct flavour: " + invoiceProducts[j].getFlavour() + "\nWeight: " + invoiceProducts[j].getWeight() + " kg\nPrice: " + invoiceProducts[j].getPrice() + " lei" + "\n");
@@ -105,6 +97,6 @@ public class Invoice {
             sInvoiceProducts += invoiceProducts[i].toString();
             sInvoiceProducts += ", ";
         }
-        return getValue() + ", " + getPayMethod() + ", " + getInvoiceCustomer().getId() + ", " + sInvoiceProducts + "\n";
+        return getValue() + ", " + getPayMethod() + ", " + getInvoiceCustomerId() + ", " + sInvoiceProducts + "\n";
     }
 }

@@ -58,6 +58,6 @@ public class Customer extends Person{
 
     @Override
     public String toString() {
-        return getName() + ", " + getCNP() + ", " + getPhoneNumber() + ", " + email + ", " + password + ", " + address;
+        return getName() + ", " + getCNP() + ", " + getPhoneNumber() + ", " + email + ", " + password + ", " + address + "\n";
     }
 }
