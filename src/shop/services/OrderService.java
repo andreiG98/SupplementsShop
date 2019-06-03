@@ -173,28 +173,31 @@ public class OrderService {
         System.out.println("Thank you for order!");
     }
 
-    public void listMyOrders (Customer customer) {
+    public ArrayList<Order> listMyOrders (Customer customer) {
         String action = "List my orders";
         CsvService.writeAudit(action);
-        if (customer == null) {
-            System.out.println("You need to be logged in!");
-            return;
-        } else {
-            ArrayList<Order> ordersByCustomer = orderRepository.getOrdersByCustomer(customer);
-            Order.show(ordersByCustomer);
-        }
+//        if (customer == null) {
+//            System.out.println("You need to be logged in!");
+//            return;
+//        } else {
+//            ArrayList<Order> ordersByCustomer = orderRepository.getOrdersByCustomer(customer);
+//            Order.show(ordersByCustomer);
+//        }
+        ArrayList<Order> ordersByCustomer = orderRepository.getOrdersByCustomer(customer);
+        return ordersByCustomer;
     }
 
-    public void listMyInvoices (Customer customer) {
+    public ArrayList<Invoice> listMyInvoices (Customer customer) {
         String action = "List my invoices";
         CsvService.writeAudit(action);
-        if (customer == null) {
-            System.out.println("You need to be logged in!");
-            return;
-        } else {
-            ArrayList<Invoice> invoicesByCustomer = invoiceRepository.getInvoicesByClient(customer);
-            Invoice.show(invoicesByCustomer);
-        }
+//        if (customer == null) {
+//            System.out.println("You need to be logged in!");
+//            return;
+//        } else {
+//            ArrayList<Invoice> invoicesByCustomer = invoiceRepository.getInvoicesByClient(customer);
+//            Invoice.show(invoicesByCustomer);
+//        }
+        return invoiceRepository.getInvoicesByClient(customer);
     }
 
     private void listCart () {

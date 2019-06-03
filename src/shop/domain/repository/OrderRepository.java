@@ -112,27 +112,8 @@ public class OrderRepository {
     }
 
     public ArrayList<Order> getOrdersByCustomer (Customer customer) {
-        ArrayList<Order> ordersByCustomer = new ArrayList<Order>();
+        ArrayList<Order> ordersByCustomer;
         ordersByCustomer = orders.get(customer.getId());
         return ordersByCustomer;
     }
-
-//    public Order getOrderByInvoice (Invoice invoice) {
-//        for (int i = 0; i < orders.size(); i++) {
-//            if (orders.get(i).getCommandInvoice().getId() == invoice.getId()) {
-//                return orders.get(i);
-//            }
-//        }
-//        return null;
-//    }
-//
-//    public ArrayList<Order> getOrdersByCourier (Courier courier) {
-//        ArrayList<Order> ordersByCourier = new ArrayList<Order>();
-//        for (int i = 0; i < orders.size(); i++) {
-//            if (orders.get(i).getCommandCourier().getId() == courier.getId()) {
-//                ordersByCourier.add(orders.get(i));
-//            }
-//        }
-//        return ordersByCourier;
-//    }
 }

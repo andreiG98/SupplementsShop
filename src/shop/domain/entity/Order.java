@@ -84,10 +84,8 @@ public class Order {
         }
         for (int i = 0; i < orders.size(); i++) {
             System.out.println("Order id: " + orders.get(i).getId() + "\n");
-            //System.out.println(orders.get(i).getCommandInvoiceId());
             Invoice invoice = InvoiceRepository.getInvoiceById(orders.get(i).getCommandInvoiceId());
             Courier courier = CourierRepository.getCourierByDrivingLicense(orders.get(i).getCommandCourierDL());
-            //System.out.println(orders.get(i).getCommandCourierDL());
 
             if (courier != null) {
                 System.out.println("Courier name: " + courier.getName());

@@ -38,33 +38,6 @@ public class ProducerRepository {
         }
     }
 
-    public Producer getProducerById (int id) {
-        for (int i = 0; i < producers.size(); i++) {
-            if (producers.get(i).getId() == id) {
-                return producers.get(i);
-            }
-        }
-        return null;
-    }
-
-    public Producer getProducerByName (String name) {
-        for (int i = 0; i < producers.size(); i++) {
-            if (producers.get(i).getName().equals(name)) {
-                return producers.get(i);
-            }
-        }
-        return null;
-    }
-
-    public Producer getProducerByCUI (long CUI) {
-        for (int i = 0; i < producers.size(); i++) {
-            if (producers.get(i).getCUI() == CUI) {
-                return producers.get(i);
-            }
-        }
-        return null;
-    }
-
     public void listtAllProducers () {
         for (int i = 0; i < producers.size(); i++) {
             System.out.println("Producer id: " + producers.get(i).getId() + "\nProducer name: " + producers.get(i).getName() + "\nProducer CUI: " + producers.get(i).getCUI());

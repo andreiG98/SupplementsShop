@@ -2,78 +2,37 @@ package shop.domain.repository;
 
 import shop.configuration.ConnectionFactory;
 import shop.domain.entity.Customer;
+import shop.tool.AddCustomer;
 import shop.tool.CustomerBuilder;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.Scanner;
 
 public class CustomerRepository {
-    static private ArrayList<Customer> customers;
-    private static File file;
-    private static final String GET_CUSTOMER_BY_ID = "SELECT * FROM customers WHERE id=?";
-    private static final String GET_ALL_CUSTOMERS = "SELECT * FROM customers";
+    private static final String GET_CUSTOMER_BY_ID = "SELECT * FROM customers WHERE id = ?";
+    private static final String GET_CUSTOMER_BY_EMAIL = "SELECT * FROM customers WHERE email = ?";
+    private static final String GET_CUSTOMER_BY_CNP = "SELECT * FROM customers WHERE cnp = ?";
     private static final String CREATE_NEW_CUSTOMER = "INSERT INTO customers (id, name, cnp, phone_number, email, password, address) VALUES (?,?,?,?,?,?,?)";
+    private static final String DELETE_CUSTOMER = "DELETE FROM customers WHERE email = ?";
+    private static final String UPDATE_EMAIL_CUSTOMER = "UPDATE customers SET email = ? WHERE email = ?";
+    private static final String customerID = "select customer_seq.NEXTVAL from dual";
 
-    public CustomerRepository (String fileName) {
-        file = new File(fileName);
-        this.customers = new ArrayList<Customer>(10);
-        try (Connection connection = ConnectionFactory.getConnection()) {
-            PreparedStatement stmt = connection.prepareStatement(GET_ALL_CUSTOMERS);
-            ResultSet resultSet = stmt.executeQuery();
-            while (resultSet.next())
-            {
-                Customer newEntry =
-                        new CustomerBuilder()
-                                .withId()
-                                .withName(resultSet.getString("name"))
-                                .withCNP(resultSet.getString("cnp"))
-                                .withPhoneNumber(resultSet.getString("phone_number"))
-                                .withEmail(resultSet.getString("email"))
-                                .withPassword(resultSet.getString("password"))
-                                .withAddress(resultSet.getString("address"))
-                                .build();
-                customers.add(newEntry);
-            }
-            stmt.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-    }
+    public CustomerRepository () {}
 
     public static void addCustomer (Customer newCustomer) {
 
-        BufferedWriter out = null;
-        try {
-            out = new BufferedWriter(new FileWriter(file, true));
-            String newEntry = newCustomer.toString();
-            customers.add(newCustomer);
-            out.write(newEntry);
-            System.out.println("Customer added succesfully!");
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if(out != null){
-                    out.close();
-                } else {
-                    System.out.println("Buffer has not been initialized!");
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-
         try (Connection connection = ConnectionFactory.getConnection()) {
             PreparedStatement stmt = connection.prepareStatement(CREATE_NEW_CUSTOMER);
+            PreparedStatement pst = connection.prepareStatement(customerID);
+            ResultSet rs = pst.executeQuery();
+            int custId = 0;
+            if(rs.next())
+                custId = rs.getInt(1);
             String[] splitedDataCustomer = newCustomer.toString().split(", ");
-            stmt.setInt(1, newCustomer.getId());
+            stmt.setInt(1, custId);
             stmt.setString(2, newCustomer.getName());
             stmt.setString(3, newCustomer.getCNP());
             stmt.setString(4, newCustomer.getPhoneNumber());
@@ -84,22 +43,14 @@ public class CustomerRepository {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
     }
 
     public static Customer getCustomerById (int id) {
-//        for (int i = 0; i < customers.size(); i++) {
-//            if (customers.get(i).getId() == id) {
-//                return customers.get(i);
-//            }
-//        }
-//        return null;
         try (Connection connection = ConnectionFactory.getConnection()) {
             PreparedStatement stmt = connection.prepareStatement(GET_CUSTOMER_BY_ID);
             stmt.setInt(1, id);
             ResultSet resultSet = stmt.executeQuery();
-            resultSet.next();
-            if (resultSet != null) {
+            if (resultSet.next()) {
                 Customer customerById =
                         new CustomerBuilder()
                                 .withName(resultSet.getString("name"))
@@ -119,30 +70,87 @@ public class CustomerRepository {
     }
 
     public Customer getCustomerByCNP (String CNP) {
-        for (int i = 0; i < customers.size(); i++) {
-            if (customers.get(i).getCNP().equals(CNP)) {
-                return customers.get(i);
+        try (Connection connection = ConnectionFactory.getConnection()) {
+            PreparedStatement stmt = connection.prepareStatement(GET_CUSTOMER_BY_CNP);
+            stmt.setString(1, CNP);
+            ResultSet resultSet = stmt.executeQuery();
+            resultSet.next();
+            if (resultSet != null) {
+                Customer customerById =
+                        new CustomerBuilder()
+                                .withName(resultSet.getString("name"))
+                                .withCNP(resultSet.getString("cnp"))
+                                .withPhoneNumber(resultSet.getString("phone_number"))
+                                .withEmail(resultSet.getString("email"))
+                                .withPassword(resultSet.getString("password"))
+                                .withAddress(resultSet.getString("address"))
+                                .build();
+                customerById.setId(resultSet.getInt("id"));
+                return customerById;
             }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
         return null;
     }
 
-    public Customer getCustomerByEmail (String email) {
-        for (int i = 0; i < customers.size(); i++) {
-            if (customers.get(i).getEmail().equals(email)) {
-                return customers.get(i);
+    public static Customer getCustomerByEmail (String email) {
+        try (Connection connection = ConnectionFactory.getConnection()) {
+            PreparedStatement stmt = connection.prepareStatement(GET_CUSTOMER_BY_EMAIL);
+            stmt.setString(1, email);
+            ResultSet resultSet = stmt.executeQuery();
+            if (resultSet.next()) {
+                Customer customerById =
+                        new CustomerBuilder()
+                                .withName(resultSet.getString("name"))
+                                .withCNP(resultSet.getString("cnp"))
+                                .withPhoneNumber(resultSet.getString("phone_number"))
+                                .withEmail(resultSet.getString("email"))
+                                .withPassword(resultSet.getString("password"))
+                                .withAddress(resultSet.getString("address"))
+                                .build();
+                customerById.setId(resultSet.getInt("id"));
+                return customerById;
             }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
         return null;
     }
 
-    public void listAllCustomers () {
-        for (int i = 0; i < customers.size(); i++) {
-            System.out.println(customers.get(i).getId() + " " + customers.get(i).toString());
+    public boolean deleteAccount(String email) {
+        try (Connection connection = ConnectionFactory.getConnection()) {
+            PreparedStatement stmt = connection.prepareStatement(DELETE_CUSTOMER);
+            stmt.setString(1, email);
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 
-    public ArrayList<Customer> getCustomers() {
-        return customers;
+    public void updateEmail(String email) {
+        String newEmail;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Type new email");
+        newEmail = scanner.nextLine();
+        while (!AddCustomer.emailMatcher(newEmail)) {
+            System.out.println("Type a valid email: ");
+            newEmail = scanner.nextLine();
+        }
+    }
+
+    public boolean updateEmail(String email, String newEmail) {
+        try (Connection connection = ConnectionFactory.getConnection()) {
+            PreparedStatement stmt = connection.prepareStatement(UPDATE_EMAIL_CUSTOMER);
+            stmt.setString(1, newEmail);
+            stmt.setString(2, email);
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

@@ -11,38 +11,6 @@ import java.util.Scanner;
 public class CustomerService {
     private CustomerRepository customerRepository = RepositoryConfiguration.getInstance().getCustomerRepository();
 
-    private ArrayList<Customer> getCustomersByASpecificPattern (String partialName) {
-        ArrayList<Customer> allCustomers = customerRepository.getCustomers();
-        ArrayList<Customer> result = new ArrayList<Customer>();
-        String pattern = createPattern(partialName);
-        for (int i = 0; i < allCustomers.size(); i++) {
-            if (allCustomers.get(i) != null && allCustomers.get(i).getName().matches(pattern)) {
-                result.add(allCustomers.get(i));
-            }
-        }
-        return result;
-    }
-
-    public void searchCustomersByASpecificPattern (String partialName) {
-        ArrayList<Customer> result = getCustomersByASpecificPattern(partialName);
-        Customer.show(result);
-    }
-
-    private String createPattern (String partialName) {
-        String[] splitedPartialName = partialName.split("(?=[A-Z])");
-        StringBuilder resultPattern = new StringBuilder();
-        for (int i = 0; i < splitedPartialName.length; i++) {
-            //System.out.println(splitedPartialName[i]);
-            resultPattern.append(splitedPartialName[i]);
-            resultPattern.append("[a-z]*");
-            if (i != splitedPartialName.length - 1) {
-                resultPattern.append("\\s");
-                resultPattern.append("[[A-Z]*[.]*[a-z]*]*\\s");
-            }
-        }
-        return resultPattern.toString();
-    }
-
     protected Customer getCustomerById (int id) {
         return customerRepository.getCustomerById(id);
     }
@@ -57,8 +25,6 @@ public class CustomerService {
     }
 
     public void addCustomer (Customer newCustomer) {
-        String action = "Add customer";
-        CsvService.writeAudit(action);
         if (newCustomer == null) {
             AddCustomer.addCustomer();
         } else {
@@ -66,14 +32,19 @@ public class CustomerService {
         }
     }
 
-    public Customer logIn (Customer loggedCustomer) {
-        String action = "Log In";
+    public boolean addCustomer (ArrayList<String> customerInfo) {
+        String action = "Add customer";
         CsvService.writeAudit(action);
+        return AddCustomer.addCustomer(customerInfo);
+    }
+
+    public Customer logIn (Customer loggedCustomer) {
         Scanner scanner = new Scanner(System.in);
         boolean tryAgain = true;
-        //boolean loggedIn = false;
         String password;
         String email;
+        String action = "Log In";
+        CsvService.writeAudit(action);
         CustomerService customerService = new CustomerService();
         if (loggedCustomer == null) {
             do {
@@ -114,5 +85,42 @@ public class CustomerService {
             System.out.println("You are already logged in!");
         }
         return loggedCustomer;
+    }
+
+    public Customer logIn (String email, String password) {
+        String action = "Log In";
+        CsvService.writeAudit(action);
+        Customer loggedCustomer;
+        boolean validLogIn = checkEmailPassword(email, password);
+        if (validLogIn == false) {
+            return null;
+        } else {
+            loggedCustomer = customerRepository.getCustomerByEmail(email);
+        }
+        return loggedCustomer;
+    }
+
+    public boolean deleteAccount(Customer loggedCustomer) {
+//        if (loggedCustomer != null) {
+//            customerRepository.deleteAccount(loggedCustomer.getEmail());
+//        } else {
+//            System.out.println("You need to be logged in!");
+//        }
+        return customerRepository.deleteAccount(loggedCustomer.getEmail());
+    }
+
+    public void updateEmail (Customer loggedCustomer) {
+        if (loggedCustomer != null) {
+            customerRepository.updateEmail(loggedCustomer.getEmail());
+        } else {
+            System.out.println("You need to be logged in!");
+        }
+    }
+
+    public boolean updateEmail(Customer loggedCustomer, String newEmail) {
+        Customer existingCustomer = CustomerRepository.getCustomerByEmail(newEmail);
+        if (existingCustomer != null || !AddCustomer.emailMatcher(newEmail))
+            return false;
+        return customerRepository.updateEmail(loggedCustomer.getEmail(), newEmail);
     }
 }

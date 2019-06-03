@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="138.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shop.controller.LogInController">
+   <children>
+      <Text layoutX="99.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Invalid email or already in use!">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Text>
+      <Button fx:id="closeSignUpFail" layoutX="268.0" layoutY="88.0" mnemonicParsing="false" onAction="#closeSignUpFail" text="Try again" />
+   </children>
+</Pane>

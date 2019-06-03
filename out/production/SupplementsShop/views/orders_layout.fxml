@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.Pane?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="941.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shop.controller.OrdersController">
+   <children>
+      <TableView fx:id="ordersTable" layoutX="-1.0" layoutY="-1.0" prefHeight="400.0" prefWidth="941.0">
+        <columns>
+          <TableColumn fx:id="orderId" prefWidth="59.200013756752014" text="Order Id" />
+          <TableColumn fx:id="courierName" prefWidth="119.1999740600586" text="Courier name" />
+            <TableColumn fx:id="courierPhoneNumber" prefWidth="143.99998474121094" text="Courier phone number" />
+            <TableColumn fx:id="invoiceId" prefWidth="67.99993896484375" text="Invoice Id" />
+            <TableColumn fx:id="customerName" prefWidth="154.39996337890625" text="Customer name" />
+            <TableColumn fx:id="productsOrder" prefWidth="231.199951171875" text="Products" />
+            <TableColumn fx:id="payMethod" prefWidth="71.20001220703125" text="Pay method" />
+            <TableColumn fx:id="totalValue" prefWidth="92.800048828125" text="Total value" />
+        </columns>
+      </TableView>
+   </children>
+</Pane>

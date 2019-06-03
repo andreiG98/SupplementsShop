@@ -65,6 +65,15 @@ public abstract class Product {
         this.producer = producer;
     }
 
+    public static String displayProducts(Product[] products) {
+        String  sBProducts = "";
+        for (int j = 0; j < products.length; j++) {
+            sBProducts += "Producer: " + products[j].getProducer() + "\nProduct name: " + products[j].getName() + "\nProduct flavour: " + products[j].getFlavour() + "\nWeight: " + products[j].getWeight() + " kg\nPrice: " + products[j].getPrice() + " lei" + "\n";
+            sBProducts += "*****************************\n";
+        }
+        return sBProducts;
+    }
+
     @Override
     public String toString() {
         return getId() + ", ";

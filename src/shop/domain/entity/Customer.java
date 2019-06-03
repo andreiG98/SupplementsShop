@@ -2,7 +2,7 @@ package shop.domain.entity;
 
 import java.util.ArrayList;
 
-public class Customer extends Person{
+public class Customer extends Person {
     private String email;
     private String password;
     private String address;
