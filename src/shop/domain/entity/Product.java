@@ -68,7 +68,7 @@ public abstract class Product {
     public static String displayProducts(Product[] products) {
         String  sBProducts = "";
         for (int j = 0; j < products.length; j++) {
-            sBProducts += "Producer: " + products[j].getProducer() + "\nProduct name: " + products[j].getName() + "\nProduct flavour: " + products[j].getFlavour() + "\nWeight: " + products[j].getWeight() + " kg\nPrice: " + products[j].getPrice() + " lei" + "\n";
+            sBProducts += "Producer: " + products[j].getProducer() + "\nProduct name: " + products[j].getName() + "\nProduct flavour: " + products[j].getFlavour() + "\nWeight: " + products[j].getWeight() + " kg\nDiscount: " + products[j].getDiscount() * 100 + " %\nPrice: " + products[j].getPrice() + " lei\nPrice after discount: " + (products[j].getPrice() - products[j].getPrice() * products[j].getDiscount()) + " lei\n";
             sBProducts += "*****************************\n";
         }
         return sBProducts;

@@ -1,6 +1,7 @@
 package shop.controller;
 
 import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,6 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import shop.domain.entity.Customer;
 import shop.domain.entity.Invoice;
 import shop.domain.entity.Product;
+import shop.domain.repository.CustomerRepository;
 import shop.services.OrderService;
 
 import java.net.URL;
@@ -50,21 +52,17 @@ public class InvoicesController implements Initializable {
             invoicesModel = FXCollections.observableArrayList(invoicesByCustomers);
 
         invoiceId.setCellValueFactory(new PropertyValueFactory<>("id"));
-        customerName.setCellValueFactory(new PropertyValueFactory<>("invoiceCustomerId"));
-
-//        productsInvoice.setCellValueFactory(
-//                Invoice -> {
-//                    SimpleObjectProperty property = new SimpleObjectProperty();
-//                    property.setValue(Invoice.getValue().getInvoiceProducts().length);
-//                    return property;
-//                }
-//        );
-
+        customerName.setCellValueFactory(
+                Invoice -> {
+                    SimpleObjectProperty property = new SimpleObjectProperty();
+                    property.setValue(CustomerRepository.getCustomerById(Invoice.getValue().getInvoiceCustomerId()).getName());
+                    return property;
+                }
+        );
         productsInvoice.setCellValueFactory(
                 p -> new ReadOnlyStringWrapper(
                         Product.displayProducts(p.getValue().getInvoiceProducts())
                 ));
-
         paymethod.setCellValueFactory(new PropertyValueFactory<>("payMethod"));
         totalValue.setCellValueFactory(new PropertyValueFactory<>("value"));
 

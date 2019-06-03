@@ -29,7 +29,7 @@
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </VBox.margin>
             </Button>
-            <Button layoutX="25.0" layoutY="309.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="398.0" text="Search order by order id">
+            <Button layoutX="25.0" layoutY="309.0" mnemonicParsing="false" onAction="#seacrhOrder" prefHeight="26.0" prefWidth="398.0" text="Search order by id">
                <VBox.margin>
                   <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                </VBox.margin>

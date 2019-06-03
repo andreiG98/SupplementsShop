@@ -207,6 +207,11 @@ public class OrderService {
         System.out.println("Total: " + totalCartValue + " lei");
     }
 
+    public Order listOrderById (int orderId) {
+        Order order = orderRepository.getOrderById(orderId);
+        return order;
+    }
+
     public void listOrderById (Customer customer) {
         String action = "List order by id";
         CsvService.writeAudit(action);

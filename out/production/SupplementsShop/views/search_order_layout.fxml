@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="941.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="shop.controller.LoggedInController">
+   <children>
+      <Label layoutX="60.0" layoutY="50.0" text="Order id">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="orderID" layoutX="60.0" layoutY="80.0" />
+      <Button layoutX="60.0" layoutY="120.0" mnemonicParsing="false" onAction="#listFoundOrder" text="Seacrh" />
+      <TableView fx:id="ordersIdTable" layoutY="200.0" prefHeight="201.0" prefWidth="941.0">
+         <columns>
+            <TableColumn fx:id="orderId" prefWidth="54.39999467134476" text="Order Id" />
+            <TableColumn fx:id="courierName" prefWidth="124.79998397827148" text="Courier name" />
+            <TableColumn fx:id="courierPhoneNumber" prefWidth="143.99998474121094" text="Courier phone number" />
+            <TableColumn fx:id="invoiceId" prefWidth="60.0" text="Invoice Id" />
+            <TableColumn fx:id="customerName" prefWidth="162.4000244140625" text="Customer name" />
+            <TableColumn fx:id="productsOrder" prefWidth="231.199951171875" text="Products" />
+            <TableColumn fx:id="payMethod" prefWidth="72.800048828125" text="Pay method" />
+            <TableColumn fx:id="totalValue" prefWidth="93.5999755859375" text="Total value" />
+         </columns>
+      </TableView>
+   </children>
+</Pane>
